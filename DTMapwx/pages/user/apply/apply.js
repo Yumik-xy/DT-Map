@@ -26,14 +26,14 @@ Page({
       method: 'GET',
       success: function (res) {
         console.log(res)
-        if(res.data.code == -1){
+        if (res.data.status == false) {
           wx.showToast({
-            title: 'res.data.message',
+            title: res.data.message,
           })
         }
-        else{
+        else {
           that.setData({
-            encoder:res.data.status
+            encoder: res.data.status
           })
         }
       }
@@ -45,12 +45,12 @@ Page({
     console.log(e.detail.value)
     wx.request({
       url: 'http://127.0.0.1:8000/api/login/',
-      data: { name: e.detail.value.name, phone: e.detail.value.telephone,verification_code0:e.detail.value.vercode, encoder:that.data.verificationcode },
+      data: { name: e.detail.value.name, phone: e.detail.value.telephone, verification_code: e.detail.value.vercode, encoder: that.data.verificationcode },
       header: { "content-type": "application/x-www-form-urlencoded" },
       method: 'POST',
       success: function (res) {
         console.log(res)
-        if(res.data.status == error){
+        if (res.data.status == error) {
           wx.showToast({
             title: 'res.data.message',
           })

@@ -12,16 +12,16 @@ from rest_framework.exceptions import ValidationError
 
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
+        print(request.data)
         phone = request.data.get('phone')
         encoder = request.data.get('encoder')
         verification_code = request.data.get('verification_code')
         decoder = base64.b64decode(encoder).decode('utf-8')
         str = decoder.split('-')
         stamp = time.time()
-        if phone == str[2] & stamp - float(str[0]) <= 90 & verification_code == str[1]:
-            return Response({'status': True, 'code': '1'})
-        return Response({'status': False, 'message': '验证码错误或失效！'})
-
+        if not phone == str[2] & stamp - float(str[0]) <= 90 & verification_code == str[1]:
+            return Response({'status': False, 'message': '验证码错误或失效！'})
+        return Response({'status': True, 'uid': '1123124'})
 
 # 对手机号进行格式校验的部分
 def phone_validator(value):
@@ -54,6 +54,7 @@ class GetCodeView(APIView):
         # 3.生成随机验证码
         import random as rd
         random_code = str(rd.randint(1000, 9999))
+        print(random_code)
         # 4.发送验证码（有效期60s） [一般情况下购买服务发短信]
         # TODO 完成验证码的发送，考虑到初赛阶段，不发送，后端可见即可！
         # 5.生成时间戳base64加密
