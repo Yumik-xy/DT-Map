@@ -36,9 +36,6 @@ Page({
         }
         else {
           that.setData({
-            encoder: res.data.encoder
-          })
-          that.setData({
             encoder: res.data.status
           })
           var inter = setInterval(function() {
