@@ -10,9 +10,6 @@ Page({
     showRegion: false,
     phonenumber: 0,
     encoder: 0,
-    sendTime: '获取验证码',
-    sendColor: '#666666',
-    snsMsgWait: 60
   },
 
   phone: function (e) {
@@ -36,26 +33,8 @@ Page({
         }
         else {
           that.setData({
-            encoder: res.data.status
+            encoder: res.data.encoder
           })
-          var inter = setInterval(function() {
-            this.setData({
-              smsFlag: true,
-              sendColor: '#cccccc',
-              sendTime: this.data.snsMsgWait + 's后重发',
-              snsMsgWait: this.data.snsMsgWait - 1
-            });
-            if (this.data.snsMsgWait < 0) {
-              clearInterval(inter)
-              this.setData({
-                sendColor: '#363636',
-                sendTime: '获取验证码',
-                snsMsgWait: 60,
-                smsFlag: false
-              });
-            }
-          }.bind(this), 1000);
-
         }
       }
     })
@@ -66,14 +45,18 @@ Page({
     console.log(e.detail.value)
     wx.request({
       url: 'http://127.0.0.1:8000/api/login/',
-      data: { name: e.detail.value.name, phone: e.detail.value.telephone, verification_code: e.detail.value.vercode, encoder: that.data.verificationcode },
+      data: { name: e.detail.value.name, phone: e.detail.value.telephone, verification_code: e.detail.value.vercode, encoder: that.data.encoder },
       header: { "content-type": "application/x-www-form-urlencoded" },
       method: 'POST',
       success: function (res) {
         console.log(res)
-        if (res.data.status == error) {
+        if (res.data.status == false) {
           wx.showToast({
-            title: 'res.data.message',
+            title: res.data.message,
+          })
+        }else{
+          wx.showToast({
+            title: '注册成功',
           })
         }
       }
