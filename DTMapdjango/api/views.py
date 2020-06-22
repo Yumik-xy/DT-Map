@@ -12,14 +12,16 @@ from rest_framework.exceptions import ValidationError
 
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
-        print(request.data)
         phone = request.data.get('phone')
         encoder = request.data.get('encoder')
         verification_code = request.data.get('verification_code')
+        print(encoder)
         decoder = base64.b64decode(encoder).decode('utf-8')
-        str = decoder.split('-')
-        stamp = time.time()
-        if not phone == str[2] & stamp - float(str[0]) <= 90 & verification_code == str[1]:
+
+        codes = decoder.split('-')
+        stamp = float(time.time())
+
+        if not phone == codes[2] & stamp - float(codes[0]) <= 90.0 & verification_code == codes[1]:
             return Response({'status': False, 'message': '验证码错误或失效！'})
         return Response({'status': True, 'uid': '1123124'})
 
