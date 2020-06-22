@@ -7,19 +7,21 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
+
 # Create your views here.
 
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
         phone = request.data.get('phone')
         encoder = request.data.get('encoder')
-        verification_code = request.data.get('Verification_Code')
+        verification_code = request.data.get('verification_code')
         decoder = base64.b64decode(encoder).decode('utf-8')
-        str=decoder.split('-')
+        str = decoder.split('-')
         stamp = time.time()
-        if phone == str[2] & stamp-float(str[0])<=90 & :
+        if phone == str[2] & stamp - float(str[0]) <= 90 & verification_code == str[1]:
             return Response({'status': True, 'code': '1'})
         return Response({'status': False, 'message': '验证码错误或失效！'})
+
 
 # 对手机号进行格式校验的部分
 def phone_validator(value):
