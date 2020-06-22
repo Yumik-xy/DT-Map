@@ -38,19 +38,16 @@ Page({
           that.setData({
             encoder: res.data.encoder
           })
-          that.setData({
-            encoder: res.data.status
-          })
           var inter = setInterval(function() {
-            this.setData({
+            that.setData({
               smsFlag: true,
               sendColor: '#cccccc',
-              sendTime: this.data.snsMsgWait + 's后重发',
-              snsMsgWait: this.data.snsMsgWait - 1
+              sendTime: that.data.snsMsgWait + 's后重发',
+              snsMsgWait: that.data.snsMsgWait - 1
             });
-            if (this.data.snsMsgWait < 0) {
+            if (that.data.snsMsgWait < 0) {
               clearInterval(inter)
-              this.setData({
+              that.setData({
                 sendColor: '#363636',
                 sendTime: '获取验证码',
                 snsMsgWait: 60,
