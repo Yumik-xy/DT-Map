@@ -1,0 +1,94 @@
+page{
+  background-color: #eeeeee;
+}
+.DT_page{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.DT_user{
+  height: 100%;
+  flex: 8;
+}
+.container{
+  height: 100%;
+}
+.log{
+  height: 200rpx;
+  width: 750rpx;
+  background-color: #3cb778;
+  margin: 0rpx 0 20rpx 0;
+  padding: 12.5rpx 0 12.5rpx 15rpx ; 
+  display: flex;
+}
+
+.log-left{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center;   */
+  align-items: center;
+  padding-left: 30rpx;
+}
+
+.log-left .avatarUrl{
+  height: 150rpx;
+  width: 150rpx;
+  border-radius: 75px;
+}
+
+.log-left .butn{
+  border: 3rpx solid #8f8f8f;
+  padding: 10rpx 35rpx;
+  margin: 20rpx auto;
+  border-radius: 20rpx;
+  box-shadow: 0rpx 2rpx 0 2rpx #66666666;
+  font-size: 35rpx;
+  color: #666666;
+}
+
+.log-right{
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;  
+  padding-left: 50rpx;
+  height: 100%; 
+}
+
+.log-right .nickName{
+  font-size: 33rpx;
+  font-weight: 650;
+  color: #FFFFFF;
+}
+
+.log-right .userGroup{
+  line-height: 80rpx;
+  font-size: 24rpx;
+  color: #f2f89f;
+}
+
+.userPages{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+.logo{
+  display: flex;
+  flex: 2.3;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+.logo image{
+  height: 176.6rpx;
+  width: 135rpx;
+ }
+ .logo text{
+  font-size: 18rpx;
+  line-height: 23rpx;
+  color: #8a8a8a;
+ }
+@import "../Template/Template.wxss"
+

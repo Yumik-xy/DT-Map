@@ -1,0 +1,20 @@
+<!--pages/Template/Template.wxml-->
+
+<!-- 使用 name 属性，作为模板的名字 -->
+<template name="User">
+<view class='btn' bindtap='{{turn_adress}}'>
+	<!-- <button class='btn' bindtap='{{turn_adress}}' style='width:300rpx'> -->
+		<image class='btnImg' src="{{item_image_uri}}"></image>
+		<text>{{item_name}}</text>
+	<!-- </button> -->
+  </view>
+<!--	 <view class="entirety" bindtap="{{turn_adress}}">
+      <view class="left">
+      <image src="{{item_image_uri}}"></image>
+      <text>{{item_name}}</text>
+      </view>
+      <view class="right">
+        <image src="../../images/jiantou2.png"></image>
+        </view>
+    </view>     -->
+</template>

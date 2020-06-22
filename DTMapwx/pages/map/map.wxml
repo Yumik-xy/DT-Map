@@ -1,0 +1,35 @@
+<!--pages/map/map.wxml-->
+<view class="DT_page">
+	<view class="DT_map">
+		<view class="search">
+			<view class="search-left">
+				<image src="../../images/search.png"></image>
+				<!-- <input placeholder="搜索店铺，区域等..." placeholder-class="placeholderStyle" placeholder-style="color: #fefefe" class="search-placeholder" bindconfirm="search"></input> -->
+				<input autoFocus="true" bindconfirm="confirmSearch" bindinput="search" class="search-placeholder" confirmType="search" placeholder="搜索店铺，区域等..." placeholderClass="placeholderStyle" placeholder-style="color: #fefefe" type="text" value=""></input>
+			</view>
+			<view bindtap="search" class="search-right">
+				<image src="../../images/search.png"></image>
+			</view>
+		</view>
+		<view class="map_container">
+			<map id="map" class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' bindregionchange="regionchange" markers="{{markers}}" show-location></map>
+		</view>
+
+		<cover-view hidden="{{!ifmark}}" class="map-mark">
+			<cover-view class="center1">
+				<cover-view class="center2"></cover-view>
+			</cover-view>
+		</cover-view>
+
+		<cover-view class="map-prompt">您可拖动地图, 选择店铺准确位置</cover-view>
+		<cover-view class="reload" bindtap="reload">
+			<cover-view class="center1">
+				<cover-view class="center2"></cover-view>
+			</cover-view>
+		</cover-view>
+		<cover-view class="tothere" bindtap="tothere">
+			<cover-image class="tothere1" src="../../images/navigation.png"></cover-image>
+		</cover-view>
+
+	</view>
+</view>

@@ -1,0 +1,100 @@
+/* pages/notify/notify.wxss */
+page{
+  background-color: #f4f4f4;
+}
+
+.DT_page {
+  background-color: #f4f4f4;
+  height: 100%;
+}
+
+.notifyview{
+  background-color: #f4f4f4;
+  height: 100vh;
+}
+
+.message {
+  height: 45rpx;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 12.5rpx 0 12.5rpx 15rpx;
+  display: flex;
+  flex-direction: row;
+  position: relative
+}
+
+.message-left {
+  position: absolute;
+  left: 20rpx;
+}
+
+.message-left text {
+  /* padding: 0rpx; */
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.message-right {
+  position: absolute;
+  right: 25rpx;
+  display:flex;
+  align-items:center;
+}
+
+.message-right image {
+  height: 35rpx;
+  width: 35rpx;
+  padding: 8rpx;
+}
+
+.message-right text{
+  padding-right: 8rpx;
+  font-size: 26rpx;
+  color: #666666;
+}
+
+
+.notify-item {
+  border: 13rpx solid #ffffff;
+  padding: 20rpx 20rpx 20rpx 20rpx;
+  border-radius: 5rpx;
+  background-color: #ffffff;
+  margin: 0rpx 0rpx 15rpx;
+  position: relative;
+}
+
+.notify-item::after{
+  border: none; 
+}
+
+.title{
+  font-size: 32rpx;
+  color: #000000;
+}
+
+.title .isread{
+  font-size: 28rpx;
+  color: red;
+  font-weight: 650;
+}
+
+.content {
+  font-size: 27rpx;
+  line-height: 33rpx;
+  color: #666666;
+  padding-top: 15rpx;
+}
+
+.more {
+  padding-top: 20rpx;
+  font-size: 24rpx;
+  line-height: 33rpx;
+  color: #bebebe;
+}
+
+.more image {
+  height: 35rpx;
+  width: 35rpx;
+  position: absolute;
+  right: 30rpx;
+}

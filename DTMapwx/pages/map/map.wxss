@@ -1,0 +1,162 @@
+/* pages/map/map.wxss */
+
+.DT_page {
+  height: 100%;
+}
+
+.DT_map {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
+.search {
+  height: 65rpx;
+  width: 100%;
+  background-color: #3cb778;
+  padding: 12.5rpx 0 12.5rpx 15rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.search-left {
+  background-color: #69c294;
+  flex: 8;
+  flex-direction: row;
+  display: flex;
+}
+
+.search-left image {
+  height: 35rpx;
+  width: 35rpx;
+  padding: 15rpx 15rpx 15rpx 20rpx;
+}
+
+.search-left input {
+  height: 65rpx;
+  font-size: 30rpx;
+  text-align: left;
+}
+
+.search-right {
+  flex: 1;
+}
+
+.search-right image {
+  height: 45rpx;
+  width: 45rpx;
+  padding: 10rpx;
+}
+
+.search-placeholder {
+  color: #fefefe;
+  font-size: 26rpx;
+  text-align: left;
+}
+
+.map_container {
+  height: 100%;
+  width: 100%;
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+}
+
+
+.map-prompt {
+  width: 420rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  color: #707070;
+  text-align: center;
+  background: #fff;
+  border-radius: 10rpx;
+  box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.reload {
+  width: 80rpx;
+  height: 80rpx;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 30rpx;
+  right: 30rpx;
+}
+
+.reload .center1 {
+  width: 30rpx;
+  height: 30rpx;
+  border: 1rpx solid #3cb778;
+  border-radius: 50%;
+  margin: 24rpx auto;
+}
+
+.reload .center2 {
+  width: 25rpx;
+  height: 25rpx;
+  background: #3cb778;
+  border-radius: 50%;
+  margin: 3rpx auto;
+}
+
+.tothere {
+  width: 80rpx;
+  height: 80rpx;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 130rpx;
+  right: 30rpx;
+}
+
+.tothere1 {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 18rpx 18rpx 17rpx 13rpx;
+  border-radius: 50%;
+}
+
+.map-mark {
+  width: 80rpx;
+  height: 80rpx;
+  background: #3cb77844;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% ,+50%);
+}
+
+.map-mark .center1 {
+  width: 30rpx;
+  height: 30rpx;
+  border: 1rpx solid #ffffffcc;
+  border-radius: 50%;
+  margin: 24rpx auto;
+}
+
+
+.map-mark .center2 {
+  width: 25rpx;
+  height: 25rpx;
+  background: #3cb778cc;
+  border-radius: 50%;
+  margin: 3rpx auto;
+}
+
+.placeholderStyle{
+  font-size: 12px;
+  line-height: 12;
+}

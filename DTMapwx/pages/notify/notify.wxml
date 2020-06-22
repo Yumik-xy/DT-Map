@@ -1,0 +1,48 @@
+<!--pages/notify/notify.wxml-->
+<wxs module='tools'>
+	var sub = function(val) {
+
+		if (val == undefined || val == '' || val == null) {
+			return;
+		}
+		if (val.length > 60) {
+			return val.substring(0, 60) + "...";
+		} else {
+			return val;
+		}
+	}
+	module.exports.sub = sub;
+</wxs>
+
+<view class="DT_page">
+	<view class="DT_notify">
+		<!-- <scroll-view scroll-y="true" scroll-with-animation="true" class="notifyview"> -->
+		 <!-- bindscrolltoupper="upper" upper-threshold="0" bindscrolltolower="lower" lower-threshold="10" scroll-top="15" -->
+			<view class="message">
+				<view class="message-left">
+					<text>全部 {{msgNum}} 条消息</text>
+				</view>
+				<view class="message-right" bindtap="messageremove">
+					<text>清除未读</text>
+					<image src="../../images/book.png"></image>
+				</view>
+
+			</view>
+			<block wx:for="{{notify}}" wx:key="key">
+				<view class="notify-item" bindtap="norifyHandler" data-id="{{index}}">
+					<view class="title">
+						<text class="isread" wx:if="{{item.isread==0}}">[未读] </text>
+						<text>{{item.notify_title}}</text>
+					</view>
+					<view class="content">
+						<text>{{tools.sub(item.notify_abstract)}}</text>
+					</view>
+					<view class="more">
+						<text> - {{item.time}} - 已有 {{item.read_num}} 人阅读了该通知 - 点击查看详情</text>
+						<image src="../../images/more.png"></image>
+					</view>
+				</view>
+			</block>
+		<!-- </scroll-view> -->
+	</view>
+</view>

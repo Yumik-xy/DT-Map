@@ -1,0 +1,46 @@
+/* pages/apply/apply.wxss */
+page{
+  background-color: #eeeeee;
+}
+.apply{
+  height: 100%;
+  width: 100%;
+}
+.con{
+  margin-top: 10rpx;
+  line-height:70rpx;
+}
+
+.con view{
+  /* margin-left:30rpx; */
+  padding-left: 30rpx;
+  border-bottom:1px solid #f2f2f2;
+}
+
+.con view text{
+  font-size: 32rpx;
+  color: #666666;
+}
+.con-nr{
+  background-color: white;
+  display: flex;
+}
+.con-nr text{
+  flex: 2;
+}
+.con-nr input{
+  float:right;
+  font-size:28rpx;
+  height: 70rpx;
+  flex: 6;
+}
+
+.submit{
+  width:500rpx;
+  line-height:85rpx;
+  text-align:center;
+  margin:50rpx auto;
+  background-color: #3cb778;
+  border-radius:10rpx;
+  color: white;
+}

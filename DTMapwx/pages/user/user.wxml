@@ -1,0 +1,27 @@
+<!--user.wxml-->
+<import src="../Template/Template.wxml" />
+<view class="DT_page">
+	<view class="DT_user">
+		<!-- <scroll-view scroll-y="true" class="container"> -->
+		<view class="log">
+			<view class="log-left">
+				<image class="avatarUrl" src="{{userInfo.avatarUrl}}"></image>
+				<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='butn' style="width:20vw">登录</button>
+			</view>
+			<view class="log-right">
+				<text wx:if="{{hasUserInfo}}" class="nickName">{{userInfo.nickName}}</text>
+				<text wx:if="{{hasUserInfo}}" class="userGroup">{{userGroup}}</text>
+			</view>
+		</view>
+		<view class="userPages">
+			<block wx:for="{{message}}" wx:key="id">
+				<template is="User" data="{{...item}}"></template>
+			</block>
+		</view>
+		<!-- </scroll-view> -->
+	</view>
+	<view class="logo">
+		<image src="../../images/logo.png"></image>
+		<text>Version 0.0.15</text>
+	</view>
+</view>

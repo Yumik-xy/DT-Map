@@ -1,0 +1,32 @@
+/* pages/notify-details/notify-details.wxss */
+
+.notify {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin:5rpx auto;
+}
+
+.title {
+  text-align:center;
+  color: rgb(20, 20, 20);
+  font-weight: 650;
+  font-size: 36rpx;
+  padding: 45rpx 35rpx 25rpx 35rpx;
+}
+
+.more {
+  text-align:center;
+  color: rgb(158, 158, 158);
+  font-size: 28rpx;
+  padding: 3rpx 35rpx ;
+}
+
+.content {
+  color: rgb(32, 32, 32);
+  font-size: 32rpx;
+  line-height: 46rpx;
+  padding: 25rpx 35rpx;
+}

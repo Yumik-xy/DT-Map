@@ -1,0 +1,14 @@
+<!--pages/notify-details/notify-details.wxml-->
+
+<view class="notify">
+	<view class="title">
+		<text>{{ notifys.notify_title }}</text>
+	</view>
+	<view class="more">
+		<text>发布时间：{{ notifys.time }} 共 {{notifys.read_num}} 人已读</text>
+	</view>
+	<view class="content">
+		<rich-text nodes="{{notifys.notify_content}}"></rich-text>
+	</view>
+
+</view>
