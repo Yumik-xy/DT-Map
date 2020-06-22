@@ -28,12 +28,12 @@ Page({
         console.log(res)
         if(res.data.code == -1){
           wx.showToast({
-            title: '手机号格式错误',
+            title: 'res.data.message',
           })
         }
         else{
-          this.setData({
-            encoder:res.data.code
+          that.setData({
+            encoder:res.data.status
           })
         }
       }
@@ -50,9 +50,9 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log(res)
-        if(res.data.code == error){
+        if(res.data.status == error){
           wx.showToast({
-            title: '验证码错误',
+            title: 'res.data.message',
           })
         }
       }
