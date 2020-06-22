@@ -44,3 +44,33 @@ page{
   border-radius:10rpx;
   color: white;
 }
+.code{
+  border: 3rpx solid #8f8f8f;
+  margin-top: 10rpx;
+  padding: 10rpx 35rpx;
+  border-radius: 20rpx;
+  box-shadow: 0rpx 2rpx 0 2rpx #66666666;
+  font-size: 23rpx;
+  color: #666666;
+  align-items: center;
+}
+.vercode{
+  height: 60rpx;
+  align-items: center;
+  line-height: 300rpx;
+  flex: 5;
+  margin-right: 20rpx;
+}
+.con-code{
+  background-color: white;
+  display: flex;
+}
+.con-code text{
+  flex: 6;
+}
+.con-code input{
+  float:right;
+  font-size:28rpx;
+  height: 70rpx;
+  flex: 10;
+}

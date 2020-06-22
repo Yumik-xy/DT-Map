@@ -10,6 +10,13 @@
 				<text>电话</text>
 				<input placeholder="电话" bindinput="phone" name="telephone"></input>
 			</view>
+			<view class="con-code">
+				<text class="vertext">验证码</text>
+				<input placeholder="请输入验证码" name="vercode" class="verinput"></input>
+				<view class="vercode">
+					<button class="code" bindtap="getcode" style="width:25vw">获取验证码</button>
+				</view>
+			</view>
 			<view class="con-nr" bindtap="chooseRegion">
 				<text>所在地</text>
 				<input disabled placeholder="选择城市" name="address" value="{{regionValue[0].name}}{{regionValue[1].name}}{{regionValue[2].name}}">

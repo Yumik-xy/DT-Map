@@ -9,6 +9,7 @@ Page({
     regionValue: [],
     showRegion: false,
     phonenumber: 0,
+    encoder: 0,
   },
 
   phone: function (e) {
@@ -25,19 +26,35 @@ Page({
       method: 'GET',
       success: function (res) {
         console.log(res)
+        if(res.data.code == -1){
+          wx.showToast({
+            title: '手机号格式错误',
+          })
+        }
+        else{
+          this.setData({
+            encoder:res.data.code
+          })
+        }
       }
     })
   },
 
   submit: function (e) {
+    var that = this
     console.log(e.detail.value)
     wx.request({
       url: 'http://127.0.0.1:8000/api/login/',
-      data: { name: e.detail.value.name, phone: e.detail.value.telephone },
+      data: { name: e.detail.value.name, phone: e.detail.value.telephone,verification_code0:e.detail.value.vercode, encoder:that.data.verificationcode },
       header: { "content-type": "application/x-www-form-urlencoded" },
       method: 'POST',
       success: function (res) {
         console.log(res)
+        if(res.data.code == error){
+          wx.showToast({
+            title: '验证码错误',
+          })
+        }
       }
     })
   },
