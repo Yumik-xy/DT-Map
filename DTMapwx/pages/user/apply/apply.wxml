@@ -28,7 +28,8 @@
 			</view>
 		</view>
 		<region-picker region-value="{{regionValue}}" show-region="{{showRegion}}" bind:myevent="emitHideRegion"></region-picker>
-		<button class="submit" form-type='submit'>
+		<!-- 加一个禁止按钮 判断 {{encoder != 0}} -->
+		<button class="submit" form-type='submit'> 
 			确定
 		</button>
 	</form>
