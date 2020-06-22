@@ -28,7 +28,7 @@ class LoginView(APIView):
 # 对手机号进行格式校验的部分
 def phone_validator(value):
     import re
-    if not re.match(r"^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$", value):
+    if not re.match(r"^1[35679]\d{9}$", value):
         raise ValidationError('手机号格式错误')
 
 
