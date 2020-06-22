@@ -50,9 +50,13 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log(res)
-        if (res.data.status == error) {
+        if (res.data.status == false) {
           wx.showToast({
-            title: 'res.data.message',
+            title: res.data.message,
+          })
+        }else{
+          wx.showToast({
+            title: '注册成功',
           })
         }
       }

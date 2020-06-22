@@ -15,15 +15,15 @@ class LoginView(APIView):
         phone = request.data.get('phone')
         encoder = request.data.get('encoder')
         verification_code = request.data.get('verification_code')
-        print(encoder)
         decoder = base64.b64decode(encoder).decode('utf-8')
-
         codes = decoder.split('-')
         stamp = float(time.time())
-
-        if not phone == codes[2] & stamp - float(codes[0]) <= 90.0 & verification_code == codes[1]:
-            return Response({'status': False, 'message': '验证码错误或失效！'})
-        return Response({'status': True, 'uid': '1123124'})
+        print(codes)
+        if not (phone == codes[2] and stamp - float(codes[0]) <= 90.0 and verification_code == codes[1]):
+            print('false')
+            return Response({'status': False, 'message': '验证码错误！'})
+        else:
+            return Response({'status': True, 'uid': '1123124'})
 
 # 对手机号进行格式校验的部分
 def phone_validator(value):
