@@ -2,12 +2,12 @@ import os
 import time
 import base64
 
+
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-
 
 # Create your views here.
 
@@ -15,7 +15,6 @@ class LoginView(APIView):
     def get(self, request, *args, **kwargs):
         print(request.query_params)
         return Response({'status': True, 'code': '-1'})
-
 
 
 class RegisterView(APIView):
@@ -31,14 +30,17 @@ class RegisterView(APIView):
         except:
             return Response({'status': False, 'message': '未获取验证码！'})
         else:
-            if phone == codes[2] and stamp - float(codes[0]) <= 90.0 and verification_code == codes[1]:
-                return Response({'status': True, 'uid': '1123124'})
-            elif stamp - float(codes[0]) > 90.0:
-                return Response({'status': False, 'message': '验证码失效！'})
-            elif phone != codes[2]:
-                return Response({'status': False, 'message': '手机号错误！'})
+            if not phone == codes[2] and stamp - float(codes[0]) <= 90.0 and verification_code == codes[1]:
+                if stamp - float(codes[0]) > 90.0:
+                    return Response({'status': False, 'message': '验证码失效！'})
+                elif phone != codes[2]:
+                    return Response({'status': False, 'message': '手机号错误！'})
+                elif verification_code != codes[1]:
+                    return Response({'status': False, 'message': '验证码错误！'})
+                else:
+                    return Response({'status': False, 'message': '未知错误！'})
             else:
-                return Response({'status': False, 'message': '验证码错误！'})
+                return Response({'status': True, 'uid': '1123124'})
 
 
 # 对手机号进行格式校验的部分
@@ -93,7 +95,7 @@ class ImageView(APIView):
             phone = request.data.get('phone')
             image_path = 'Registration/' + phone + '_' + name + '.jpg'
         except:
-            return Response({'status': False,'message': '缺乏信息！'})
+            return Response({'status': False, 'message': '缺乏信息！'})
         else:
             if not os.path.exists(image_path):
                 with open(image_path, 'wb+') as f:
@@ -101,4 +103,3 @@ class ImageView(APIView):
                     f.close()
                     return Response({'status': True})
             return Response({'status': False})
-
