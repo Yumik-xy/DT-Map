@@ -77,17 +77,21 @@ class GetCodeView(APIView):
 class ImageView(APIView):
     # 上传图片的方法
     def post(self, request, *args, **kwargs):
-        print(request.data)
+        # print(request.data)
         # 1.获取身份证正反面以及摊点证明
         # 2.由于设定问题，导致微信每次只能上传一张图片，所以文件名会从微信端接受保存
-        image = request.FILES['image']
-        name = request.data.get('name')
-        phone = request.data.get('phone')
-        print(image, name)
-        image_path = ".\\data\\" + phone + "\\"
-        if not os.path.exists(image_path + '.jpg'):
-            with open(image_path + name + '.jpg', 'wb') as f:
-                f.write(image.read())
-                f.close()
-                return Response({'status': True})
-        return Response({'status': False})
+        try:
+            image = request.FILES['image']
+            name = request.data.get('name')
+            phone = request.data.get('phone')
+            image_path = 'Registration/' + phone + '_' + name + '.jpg'
+        except:
+            return Response({'status': False,'message': '缺乏信息！'})
+        else:
+            if not os.path.exists(image_path):
+                with open(image_path, 'wb+') as f:
+                    f.write(image.read())
+                    f.close()
+                    return Response({'status': True})
+            return Response({'status': False})
+

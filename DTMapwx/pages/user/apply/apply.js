@@ -52,7 +52,7 @@ Page({
         header: { "content-type": "application/x-www-form-urlencoded" },
         success: function (res) {
           console.log(res)
-          if (res.data.status == ture) {
+          if (res.data.status == true) {
             wx.showToast({
               title: '上传成功！',
               duration: 3000
