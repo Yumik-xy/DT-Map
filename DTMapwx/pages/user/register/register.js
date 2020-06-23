@@ -80,6 +80,12 @@ Page({
           wx.showToast({
             title: '注册成功',
           })
+          var regInfo = {
+            name:e.detail.value.name,
+            phone:e.detail.value.phone
+          }
+          wx.setStorageSync('regInfo', regInfo)
+
         }
       }
     })
