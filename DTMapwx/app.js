@@ -6,15 +6,20 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    var regInfo = wx.getStorageSync('regInfo')
+    wx.request({
+      url: 'http://127.0.0.1:8000/api/login/',
+      data:{name:regInfo.name, phone:regInfo.phone},
+    })
 
     // 登录
     wx.login({
       success: res => {
-        wx.request({
-          url: 'http://127.0.0.1:8000/api/login/',
-          data: { code: res.code },
-          method: 'GET',
-        })
+        // wx.request({
+        //   url: 'http://127.0.0.1:8000/api/login/',
+        //   data: { code: res.code },
+        //   method: 'GET',
+        // })
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
