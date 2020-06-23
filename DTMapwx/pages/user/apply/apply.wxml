@@ -16,5 +16,5 @@
         <image src="../../../images/jiahao.png"></image>
       </view>
     </view>
-    <button disabled="{{images.length==0}}" class="submit" form-type='submit'> 提交 </button>
+    <button disabled="{{images.length==0}}" class="submit" bindtap="submit"> 提交 </button>
 </view>

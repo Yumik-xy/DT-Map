@@ -62,3 +62,7 @@
   align-items: center;
   justify-content: center;
 }
+.q-image{
+  width: 150rpx;
+  height: 150rpx;
+}
