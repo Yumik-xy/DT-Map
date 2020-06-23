@@ -1,0 +1,34 @@
+<!--pages/apply/apply.wxml-->
+<view class="apply">
+	<form bindsubmit='submit'>
+		<view class="con">
+			<view class="con-nr">
+				<text>姓名</text>
+				<input placeholder="请填写真实姓名" name="name"></input>
+			</view>
+			<view class="con-nr">
+				<text>电话</text>
+				<input placeholder="电话" bindinput="phone" name="telephone"></input>
+			</view>
+			<view class="con-code">
+				<text class="vertext">验证码</text>
+				<input placeholder="请输入验证码" name="vercode" class="verinput"></input>
+				<view class="vercode">
+					<button class="code" disabled="{{smsFlag}}" bindtap="getcode" style="width:25vw ;color:{{sendColor}}">{{sendTime}}</button>
+				</view>
+			</view>
+			<view class="con-nr" bindtap="chooseRegion">
+				<text>所在地</text>
+				<input disabled placeholder="选择城市" name="address" value="{{regionValue[0].name}}{{regionValue[1].name}}{{regionValue[2].name}}">
+				</input>
+			</view>
+			<view class="con-nr">
+				<text>商品类型</text>
+				<input placeholder="食品、服饰、日用百货等" name="kind" value=""></input>
+			</view>
+		</view>
+		<region-picker region-value="{{regionValue}}" show-region="{{showRegion}}" bind:myevent="emitHideRegion"></region-picker>
+		<!-- 加一个禁止按钮 判断 {{encoder != 0}} -->
+		<button disabled="{{encoder==0}}" class="submit" form-type='submit'> 确定 </button>
+	</form>
+</view>

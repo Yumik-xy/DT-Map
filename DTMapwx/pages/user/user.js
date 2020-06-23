@@ -20,6 +20,12 @@ Page({
         item_name: "管理"
       },
       {
+        turn_adress: "turn_register",
+        items_details: "turn_register",
+        item_image_uri: "../../images/register.png",
+        item_name: "注册"
+      },
+      {
         turn_adress: "turn_apply",
         items_details: "turn_apply",
         item_image_uri: "../../images/apply.png",
@@ -30,12 +36,6 @@ Page({
         items_details: "turn_manage",
         item_image_uri: "../../images/manage.png",
         item_name: "管理"
-      },
-      {
-        turn_adress: "turn_apply",
-        items_details: "turn_apply",
-        item_image_uri: "../../images/apply.png",
-        item_name: "申请"
       },
       
     ],
@@ -61,6 +61,11 @@ Page({
   turn_apply: function () {
     wx.navigateTo({
       url: 'apply/apply',
+    })
+  },
+  turn_register: function () {
+    wx.navigateTo({
+      url: 'register/register',
     })
   },
 

@@ -1,0 +1,76 @@
+/* pages/apply/apply.wxss */
+page{
+  background-color: #eeeeee;
+}
+.apply{
+  height: 100%;
+  width: 100%;
+}
+.con{
+  margin-top: 10rpx;
+  line-height:70rpx;
+}
+
+.con view{
+  /* margin-left:30rpx; */
+  padding-left: 30rpx;
+  border-bottom:1px solid #f2f2f2;
+}
+
+.con view text{
+  font-size: 32rpx;
+  color: #666666;
+}
+.con-nr{
+  background-color: white;
+  display: flex;
+}
+.con-nr text{
+  flex: 2;
+}
+.con-nr input{
+  float:right;
+  font-size:28rpx;
+  height: 70rpx;
+  flex: 6;
+}
+
+.submit{
+  width:500rpx;
+  line-height:85rpx;
+  text-align:center;
+  margin:50rpx auto;
+  background-color: #3cb778;
+  border-radius:10rpx;
+  color: white;
+}
+.code{
+  border: 3rpx solid #8f8f8f;
+  margin-top: 10rpx;
+  padding: 10rpx 35rpx;
+  border-radius: 20rpx;
+  box-shadow: 0rpx 2rpx 0 2rpx #66666666;
+  font-size: 23rpx;
+  color: #666666;
+  align-items: center;
+}
+.vercode{
+  height: 60rpx;
+  align-items: center;
+  line-height: 300rpx;
+  flex: 5;
+  margin-right: 20rpx;
+}
+.con-code{
+  background-color: white;
+  display: flex;
+}
+.con-code text{
+  flex: 6;
+}
+.con-code input{
+  float:right;
+  font-size:28rpx;
+  height: 70rpx;
+  flex: 10;
+}
