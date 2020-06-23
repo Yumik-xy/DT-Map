@@ -41,6 +41,27 @@ Page({
       urls: images,  //所有要预览的图片
     })
   },
+  submit: function () {
+    var that = this
+    var imgfile;
+    for (var i = 0; i < this.data.images.length; i++) {//循环遍历图片 
+      wx.uploadFile({
+        url: 'http://127.0.0.1:8000/api/image/',//自己的接口地址
+        filePath: that.data.images[i],
+        name: 'image',
+        header: { "content-type": "application/x-www-form-urlencoded" },
+        success: function (res) {
+          console.log(res)
+          if (res.data.status == ture) {
+            wx.showToast({
+              title: '上传成功！',
+              duration: 3000
+            });
+          }
+        }
+      })
+      }
+  },
 
   /**
    * 生命周期函数--监听页面加载

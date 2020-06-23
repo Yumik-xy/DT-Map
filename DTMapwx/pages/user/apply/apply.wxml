@@ -1,5 +1,5 @@
 <!--pages/user/apply/apply.wxml-->
-
+<view class="apply">
    <text class='pf-type'>附件上传（仅支持图片）</text>
     <view class="question-images clearFloat">
       <block wx:for="{{images}}" wx:key="*this">
@@ -16,3 +16,5 @@
         <image src="../../../images/jiahao.png"></image>
       </view>
     </view>
+    <button disabled="{{images.length==0}}" class="submit" form-type='submit'> 提交 </button>
+</view>
