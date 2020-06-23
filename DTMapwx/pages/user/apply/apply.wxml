@@ -1,2 +1,18 @@
 <!--pages/user/apply/apply.wxml-->
-<text>pages/user/apply/apply.wxml</text>
+
+   <text class='pf-type'>附件上传（仅支持图片）</text>
+    <view class="question-images clearFloat">
+      <block wx:for="{{images}}" wx:key="*this">
+        <view class="q-image-wrap">
+          <!-- 图片缩略图  -->
+          <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+          <!-- 移除图片的按钮  -->
+          <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
+            <image src="../../../images/cross.png"></image>
+          </view>
+        </view>
+      </block>
+      <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
+        <image src="../../../images/jiahao.png"></image>
+      </view>
+    </view>

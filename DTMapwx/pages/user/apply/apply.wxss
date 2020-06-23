@@ -1,1 +1,47 @@
 /* pages/user/apply/apply.wxss */
+ .pf-type{
+   color: #666666;
+ }
+.q-image-wrap{
+  width: 150rpx;
+  height: 150rpx;
+  border: 3px solid #f0f0f0;
+  float: left;
+  margin-right: 20rpx;
+  position: relative;
+  overflow: hidden;
+}
+.q-image-remover{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100%;
+  background: #3cb778;
+  position: absolute;
+  top:-50rpx;
+  right:-50rpx;
+ 
+}
+.q-image-remover image{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  left:10rpx;
+  bottom:10rpx;
+  color:#fff;
+}
+ 
+.uploadImgBtn{
+  display: flex;
+  width: 150rpx;
+  height: 150rpx;
+  text-align: center;
+  /* line-height: 140rpx; */
+  border: 6rpx solid #f0f0f0;
+  float: left;
+  align-items: center;
+  justify-content: center;
+}
+.uploadImgBtn image{
+  width: 80rpx;
+  height: 80rpx;
+}
