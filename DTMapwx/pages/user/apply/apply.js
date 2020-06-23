@@ -32,6 +32,7 @@ Page({
         if (res.data.status == false) {
           wx.showToast({
             title: res.data.message,
+            icon:'none',
           })
         }
         else {
@@ -73,6 +74,7 @@ Page({
         if (res.data.status == false) {
           wx.showToast({
             title: res.data.message,
+            icon:'none'
           })
         }else{
           wx.showToast({
