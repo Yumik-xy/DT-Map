@@ -8,9 +8,7 @@ Page({
    */
   data: {
     userGroup:'未注册用户',
-    userInfo: {
-      avatarUrl: "../../images/denglu1.png",
-    },
+    userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
@@ -18,25 +16,25 @@ Page({
       {
         turn_adress: "turn_manage",
         items_details: "turn_manage",
-        item_image_uri: "../../images/guanli1.png",
+        item_image_uri: "../../images/manage.png",
         item_name: "管理"
       },
       {
         turn_adress: "turn_apply",
         items_details: "turn_apply",
-        item_image_uri: "../../images/shenqing1.png",
+        item_image_uri: "../../images/apply.png",
         item_name: "申请"
       },
       {
         turn_adress: "turn_manage",
         items_details: "turn_manage",
-        item_image_uri: "../../images/guanli1.png",
+        item_image_uri: "../../images/manage.png",
         item_name: "管理"
       },
       {
         turn_adress: "turn_apply",
         items_details: "turn_apply",
-        item_image_uri: "../../images/shenqing1.png",
+        item_image_uri: "../../images/apply.png",
         item_name: "申请"
       },
       
