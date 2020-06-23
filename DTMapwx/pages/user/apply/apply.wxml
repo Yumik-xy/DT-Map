@@ -14,7 +14,7 @@
 				<text class="vertext">验证码</text>
 				<input placeholder="请输入验证码" name="vercode" class="verinput"></input>
 				<view class="vercode">
-					<button class="code" disabled="{{smsFlag}}" bindtap="getcode" style="width:25vw ;color:{{sendColor}}" >{{sendTime}}</button>
+					<button class="code" disabled="{{smsFlag}}" bindtap="getcode" style="width:25vw ;color:{{sendColor}}">{{sendTime}}</button>
 				</view>
 			</view>
 			<view class="con-nr" bindtap="chooseRegion">
@@ -29,8 +29,6 @@
 		</view>
 		<region-picker region-value="{{regionValue}}" show-region="{{showRegion}}" bind:myevent="emitHideRegion"></region-picker>
 		<!-- 加一个禁止按钮 判断 {{encoder != 0}} -->
-		<button class="submit" form-type='submit'> 
-			确定
-		</button>
+		<button disabled="{{encoder==0}}" class="submit" form-type='submit'> 确定 </button>
 	</form>
 </view>

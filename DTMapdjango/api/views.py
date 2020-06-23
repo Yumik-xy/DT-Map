@@ -1,3 +1,4 @@
+import os
 import time
 import base64
 
@@ -23,11 +24,15 @@ class LoginView(APIView):
         except:
             return Response({'status': False, 'message': '未获取验证码！'})
         else:
-            if not (phone == codes[2] and stamp - float(codes[0]) <= 90.0 and verification_code == codes[1]):
-                print('false')
-                return Response({'status': False, 'message': '验证码错误！'})
-            else:
+            if phone == codes[2] and stamp - float(codes[0]) <= 90.0 and verification_code == codes[1]:
                 return Response({'status': True, 'uid': '1123124'})
+            elif stamp - float(codes[0]) > 90.0:
+                return Response({'status': False, 'message': '验证码失效！'})
+            elif phone != codes[2]:
+                return Response({'status': False, 'message': '手机号错误！'})
+            else:
+                return Response({'status': False, 'message': '验证码错误！'})
+
 
 # 对手机号进行格式校验的部分
 def phone_validator(value):
@@ -67,3 +72,22 @@ class GetCodeView(APIView):
         encoder = base64.b64encode(url.encode("utf-8")).decode('utf-8')
         # 6.返回加密数据
         return Response({'status': True, 'encoder': encoder})
+
+
+class ImageView(APIView):
+    # 上传图片的方法
+    def post(self, request, *args, **kwargs):
+        print(request.data)
+        # 1.获取身份证正反面以及摊点证明
+        # 2.由于设定问题，导致微信每次只能上传一张图片，所以文件名会从微信端接受保存
+        image = request.FILES['image']
+        name = request.data.get('name')
+        phone = request.data.get('phone')
+        print(image, name)
+        image_path = ".\\data\\" + phone + "\\"
+        if not os.path.exists(image_path + '.jpg'):
+            with open(image_path + name + '.jpg', 'wb') as f:
+                f.write(image.read())
+                f.close()
+                return Response({'status': True})
+        return Response({'status': False})
