@@ -32,7 +32,7 @@ class LoginView(APIView):
 # 对手机号进行格式校验的部分
 def phone_validator(value):
     import re
-    if not re.match("^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\d{8}$", value):
+    if not re.match("^(1[3-9])\\d{9}$", value):
         raise ValidationError('手机号格式错误')
 
 
@@ -45,10 +45,8 @@ class GetCodeView(APIView):
     # 1.获取手机号
     # 2.对手机号进行校验
     # 3.生成随机验证码
-    # 4.发送验证码（有效期30s）
-    # 5.保留验证码，手机号等待返回校验
-    #   conn.set('phonenumber', 'code', ex=30)
-    #   conn.get('phonenumber')
+    # 4.发送验证码（有效期60s） [一般情况下购买服务发短信]
+    # 5.生成时间戳base64加密
     def get(self, request, *args, **kwargs):
         print(request.query_params)
         # 1.获取手机号
@@ -59,7 +57,7 @@ class GetCodeView(APIView):
         phone = ser.validated_data.get('phone')
         # 3.生成随机验证码
         import random as rd
-        random_code = str(rd.randint(1000, 9999))
+        random_code = str(rd.randint(100000, 999999))
         print(random_code)
         # 4.发送验证码（有效期60s） [一般情况下购买服务发短信]
         # TODO 完成验证码的发送，考虑到初赛阶段，不发送，后端可见即可！
