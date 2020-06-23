@@ -12,6 +12,13 @@ from rest_framework.exceptions import ValidationError
 # Create your views here.
 
 class LoginView(APIView):
+    def get(self, request, *args, **kwargs):
+        print(request.query_params)
+        return Response({'status': True, 'code': '-1'})
+
+
+
+class RegisterView(APIView):
     def post(self, request, *args, **kwargs):
         try:
             print(request.data)
@@ -41,7 +48,7 @@ def phone_validator(value):
         raise ValidationError('手机号格式错误')
 
 
-class GetCOdeSerializers(serializers.Serializer):
+class GetCodeSerializers(serializers.Serializer):
     phone = serializers.CharField(label='手机号', validators=[phone_validator, ])
 
 
@@ -56,7 +63,7 @@ class GetCodeView(APIView):
         print(request.query_params)
         # 1.获取手机号
         # 2.对手机号进行校验
-        ser = GetCOdeSerializers(data=request.query_params)
+        ser = GetCodeSerializers(data=request.query_params)
         if not ser.is_valid():
             return Response({'status': False, 'message': '手机号格式错误'})
         phone = ser.validated_data.get('phone')
