@@ -1,7 +1,7 @@
 import os
 import time
 import base64
-
+import requests
 
 from django.shortcuts import render
 from rest_framework.views import APIView
@@ -9,12 +9,37 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
+from .models import dtmap
+
+
 # Create your views here.
 
 class LoginView(APIView):
-    def get(self, request, *args, **kwargs):
-        print(request.query_params)
-        return Response({'status': True, 'code': '-1'})
+    def post(self, request, *args, **kwargs):
+        APPID = 'wx207fabe088d7faef'
+        SECRET = '5c0b7392990ef009d4f17340a46f991d'
+        JSCODE = request.data.get('code')
+        NAME = request.data.get('name')
+        PHONE = request.data.get('phone')
+        print(request.data,'login')
+        if not all([JSCODE]):
+            return Response({'status': False, 'message': '无法获取codeid'})
+        url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + APPID + '&secret=' + SECRET + '&js_code=' + JSCODE + '&grant_type=authorization_code'
+        res = requests.get(url=url)
+        # errcode = res.json()['errcode']
+        # if errcode == '40013':
+        #     return Response({'status': False, 'message': 'codeid错误'})
+        openid = res.json()['openid']
+        print(openid)
+        try:
+            openidn = dtmap.objects.get(openid=openid)
+        except:
+            return Response({'status': False, 'message': 'codeid错误'})
+        else:
+            if openidn.name == NAME and openidn.phone == PHONE:
+                return Response({'status': True})
+            else:
+                return Response({'status': False, 'message': '校验不通过'})
 
 
 class RegisterView(APIView):

@@ -18,7 +18,7 @@ App({
           // console.log(loginCode.code)
           // 获取openid
          wx.request({
-          url: 'http://127.0.0.1:8000/api/register/',
+          url: 'http://127.0.0.1:8000/api/login/',
            data: {
             code: loginCode.code, name:regInfo.name, phone:regInfo.phone, uid:regInfo.uid
             },
@@ -27,6 +27,7 @@ App({
             },
             method: 'POST',
             success: function (res) {
+              console.log(res)
              if (res.data.status == true) { 
               wx.showToast({
                 title: '登陆成功',

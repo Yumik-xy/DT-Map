@@ -22,7 +22,7 @@ Page({
       type: 'gcj02', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
       success: function (res) {
         //赋值经纬度
-        console.log(res)
+        // console.log(res)
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,
@@ -37,7 +37,7 @@ Page({
 
   regionchange(event) {
     // 地图发生变化的时候，获取中间点，也就是用户选择的位置toFixed
-    console.log(event)
+    // console.log(event)
     this.setData({ ifmark: (event.type == 'begin' && event.causedBy == 'gesture' ? true : false) })
     if (event.type == 'end' && (event.causedBy == 'scale' || event.causedBy == 'drag')) {
       var that = this;
