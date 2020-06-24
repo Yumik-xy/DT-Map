@@ -6,11 +6,40 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    wx.setStorageSync('regInfo', regInfo)
     var regInfo = wx.getStorageSync('regInfo')
-    wx.request({
-      url: 'http://127.0.0.1:8000/api/login/',
-      data:{name:regInfo.name, phone:regInfo.phone},
-    })
+    // wx.request({
+    //   url: 'http://127.0.0.1:8000/api/login/',
+    //   data:{name:regInfo.name, phone:regInfo.phone},
+    // })
+    var that =  this
+    wx.login({
+      success: function (loginCode) {
+          // console.log(loginCode.code)
+          // 获取openid
+         wx.request({
+          url: 'http://127.0.0.1:8000/api/register/',
+           data: {
+            code: loginCode.code, name:regInfo.name, phone:regInfo.phone, uid:regInfo.uid
+            },
+            header: {
+              "content-type": "application/x-www-form-urlencoded"
+            },
+            method: 'POST',
+            success: function (res) {
+             if (res.data.status == true) { 
+              wx.showToast({
+                title: '登陆成功',
+              })
+              }
+            },
+            // 获取openid失败
+            fail: function (res) {
+  
+            }
+          })
+        }
+      })
 
     // 登录
     wx.login({
