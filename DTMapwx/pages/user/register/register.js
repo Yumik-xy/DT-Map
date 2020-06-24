@@ -82,7 +82,7 @@ Page({
           })
           var regInfo = {
             name:e.detail.value.name,
-            phone:e.detail.value.phone,
+            phone:e.detail.value.telephone,
             uid :res.data.uid
           }
           wx.setStorageSync('regInfo', regInfo)
