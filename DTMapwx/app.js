@@ -6,7 +6,7 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    wx.setStorageSync('regInfo', regInfo)
+    // wx.setStorageSync('regInfo', regInfo)
     var regInfo = wx.getStorageSync('regInfo')
     // wx.request({
     //   url: 'http://127.0.0.1:8000/api/login/',
