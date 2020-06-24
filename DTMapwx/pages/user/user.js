@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userGroup:'未注册用户',
+    userGroup:app.globalData.userStatus,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),

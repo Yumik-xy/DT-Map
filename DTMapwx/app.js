@@ -31,6 +31,7 @@ App({
               wx.showToast({
                 title: '登陆成功',
               })
+              that.globalData.userStatus = "正式用户"
               }
             },
             // 获取openid失败
@@ -73,6 +74,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    userStatus:"未注册用户"
   },
 })
