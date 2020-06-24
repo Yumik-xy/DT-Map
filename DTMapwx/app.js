@@ -17,7 +17,6 @@ App({
       success: function (loginCode) {
           // console.log(loginCode.code)
           // 获取openid
-         that.globalData.code = loginCode.code
          wx.request({
           url: 'http://127.0.0.1:8000/api/login/',
            data: {

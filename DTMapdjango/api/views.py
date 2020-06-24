@@ -27,6 +27,7 @@ def GetOpenid(coder):
     try:
         openid = res.json()['openid']
     except:
+        print(res.json()['errmsg'])
         return ""
     print(openid)
     return openid
@@ -61,10 +62,10 @@ class RegisterView(APIView):
             decoder = base64.b64decode(encoder).decode('utf-8')
             codes = decoder.split('-')
             stamp = float(time.time())
-            maxid = dtmap.objects.all().aggregate(Max('id')).get('id__max') + 1
+            max_id = dtmap.objects.all().aggregate(Max('id')).get('id__max') + 1
             openid = GetOpenid(code)
         except:
-            return Response({'status': False, 'message': '未获取验证码！'})
+            return Response({'status': False, 'message': '未知错误！'})
         if not (phone == codes[2] and stamp - float(codes[0]) <= 90.0 and verification_code == codes[
             1] and openid != ""):
             if stamp - float(codes[0]) > 90.0:
@@ -77,10 +78,10 @@ class RegisterView(APIView):
                 return Response({'status': False, 'message': 'codeid错误！'})
             else:
                 return Response({'status': False, 'message': '未知错误！'})
-        db = dtmap.objects.create(id=maxid, name=name, phone=phone,
+        db = dtmap.objects.create(id=max_id, name=name, phone=phone,
                                   time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), openid=openid)
         db.save()
-        return Response({'status': True, 'uid': str(maxid).zfill(8)})
+        return Response({'status': True, 'uid': str(max_id).zfill(8)})
         # return Response({'status': True})
 
 
