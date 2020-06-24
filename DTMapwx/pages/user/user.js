@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userGroup:app.globalData.userStatus,
+    userGroup:"未注册用户",
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -73,6 +73,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(getApp().globalData.userStatus == 1){
+      this.setData({
+        userGroup:"正式用户"
+      })
+    }
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

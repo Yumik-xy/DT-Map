@@ -17,6 +17,7 @@ App({
       success: function (loginCode) {
           // console.log(loginCode.code)
           // 获取openid
+         that.globalData.code = loginCode.code
          wx.request({
           url: 'http://127.0.0.1:8000/api/login/',
            data: {
@@ -32,7 +33,7 @@ App({
               wx.showToast({
                 title: '登陆成功',
               })
-              that.globalData.userStatus = "正式用户"
+              that.globalData.userStatus = 1
               }
             },
             // 获取openid失败
@@ -76,6 +77,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    userStatus:"未注册用户"
+    userStatus:0,
+    code:null
   },
 })

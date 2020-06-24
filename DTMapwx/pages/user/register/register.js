@@ -61,13 +61,12 @@ Page({
       }
     })
   },
-
   submit: function (e) {
     var that = this
     console.log(e.detail.value)
     wx.request({
       url: 'http://127.0.0.1:8000/api/register/',
-      data: { name: e.detail.value.name, phone: e.detail.value.telephone, code : '1',verification_code: e.detail.value.vercode, encoder: that.data.encoder },
+      data: { name: e.detail.value.name, phone: e.detail.value.telephone, code : '1',verification_code: e.detail.value.vercode, encoder: that.data.encoder, logincode:getApp().globalData.code },
       header: { "content-type": "application/x-www-form-urlencoded" },
       method: 'POST',
       success: function (res) {
