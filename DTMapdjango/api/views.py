@@ -21,7 +21,7 @@ def GetOpenid(coder):
     APPID = 'wx207fabe088d7faef'
     SECRET = '5c0b7392990ef009d4f17340a46f991d'
     if not all([coder]):
-        return Response({'status': False, 'message': '无法获取codeid'})
+        return ""
     url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + APPID + '&secret=' + SECRET + '&js_code=' + coder + '&grant_type=authorization_code'
     res = requests.get(url=url)
     try:
@@ -35,10 +35,10 @@ def GetOpenid(coder):
 
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
-        JSCODE = request.data.get('code')
+        code = request.data.get('code')
         PHONE = request.data.get('phone')
         print(request.data, 'login')
-        openid = GetOpenid(JSCODE)
+        openid = GetOpenid(code)
         if openid == "":
             return Response({'status': False, 'message': 'codeid错误'})
         try:

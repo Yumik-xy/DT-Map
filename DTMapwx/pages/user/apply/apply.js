@@ -43,20 +43,38 @@ Page({
   },
   submit: function () {
     var that = this
-    var imgfile;
+    // var imgfile;
+    var namen = ['身份证正面','身份证反面','手持身份证照']
+    var regInfo = wx.getStorageSync('regInfo')
     for (var i = 0; i < this.data.images.length; i++) {//循环遍历图片 
       wx.uploadFile({
         url: 'http://127.0.0.1:8000/api/image/',//自己的接口地址
         filePath: that.data.images[i],
         name: 'image',
         header: { "content-type": "application/x-www-form-urlencoded" },
+        method: 'POST',
+        formData: {
+          'name' : namen[i],
+          'phone' : regInfo.phone,
+        },
         success: function (res) {
+          var data = JSON.parse(res.data)
           console.log(res)
-          if (res.data.status == true) {
+          console.log(res.data)
+          console.log(res.data.status)
+          if (data.status == true) {
             wx.showToast({
               title: '上传成功！',
-              duration: 3000
-            });
+              duration: 3000,
+            }),
+            that.setData({
+              images: []
+            })
+            setTimeout(function (){
+              wx.navigateBack({
+                delta: 0 //返回上一级页面
+              })
+            },2000)
           }
         }
       })
