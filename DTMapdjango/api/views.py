@@ -1,7 +1,9 @@
+import datetime
 import os
 import time
 import base64
 import requests
+from django.db.models import Max
 
 from django.shortcuts import render
 from rest_framework.views import APIView
@@ -14,32 +16,37 @@ from .models import dtmap
 
 # Create your views here.
 
+# 获取openid的部分
+def GetOpenid(coder):
+    APPID = 'wx207fabe088d7faef'
+    SECRET = '5c0b7392990ef009d4f17340a46f991d'
+    if not all([coder]):
+        return Response({'status': False, 'message': '无法获取codeid'})
+    url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + APPID + '&secret=' + SECRET + '&js_code=' + coder + '&grant_type=authorization_code'
+    res = requests.get(url=url)
+    try:
+        openid = res.json()['openid']
+    except:
+        return ""
+    print(openid)
+    return openid
+
+
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
-        APPID = 'wx207fabe088d7faef'
-        SECRET = '5c0b7392990ef009d4f17340a46f991d'
         JSCODE = request.data.get('code')
-        NAME = request.data.get('name')
         PHONE = request.data.get('phone')
-        print(request.data,'login')
-        if not all([JSCODE]):
-            return Response({'status': False, 'message': '无法获取codeid'})
-        url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + APPID + '&secret=' + SECRET + '&js_code=' + JSCODE + '&grant_type=authorization_code'
-        res = requests.get(url=url)
-        # errcode = res.json()['errcode']
-        # if errcode == '40013':
-        #     return Response({'status': False, 'message': 'codeid错误'})
-        openid = res.json()['openid']
-        print(openid)
-        try:
-            openidn = dtmap.objects.get(openid=openid)
-        except:
+        print(request.data, 'login')
+        openid = GetOpenid(JSCODE)
+        if openid == "":
             return Response({'status': False, 'message': 'codeid错误'})
-        else:
-            if openidn.name == NAME and openidn.phone == PHONE:
-                return Response({'status': True})
-            else:
-                return Response({'status': False, 'message': '校验不通过'})
+        try:
+            db = dtmap.objects.get(openid=openid)
+        except:
+            return Response({'status': False, 'message': '未注册！'})
+        if not db.phone == PHONE:
+            return Response({'status': False, 'message': '校验不通过'})
+        return Response({'status': True, 'uid': str(db.id).zfill(8)})
 
 
 class RegisterView(APIView):
@@ -47,25 +54,34 @@ class RegisterView(APIView):
         try:
             print(request.data)
             phone = request.data.get('phone')
+            name = request.data.get('name')
             encoder = request.data.get('encoder')
+            code = request.data.get('code')
             verification_code = request.data.get('verification_code')
             decoder = base64.b64decode(encoder).decode('utf-8')
             codes = decoder.split('-')
             stamp = float(time.time())
+            maxid = dtmap.objects.all().aggregate(Max('id')).get('id__max') + 1
+            openid = GetOpenid(code)
         except:
             return Response({'status': False, 'message': '未获取验证码！'})
-        else:
-            if not phone == codes[2] and stamp - float(codes[0]) <= 90.0 and verification_code == codes[1]:
-                if stamp - float(codes[0]) > 90.0:
-                    return Response({'status': False, 'message': '验证码失效！'})
-                elif phone != codes[2]:
-                    return Response({'status': False, 'message': '手机号错误！'})
-                elif verification_code != codes[1]:
-                    return Response({'status': False, 'message': '验证码错误！'})
-                else:
-                    return Response({'status': False, 'message': '未知错误！'})
+        if not (phone == codes[2] and stamp - float(codes[0]) <= 90.0 and verification_code == codes[
+            1] and openid != ""):
+            if stamp - float(codes[0]) > 90.0:
+                return Response({'status': False, 'message': '验证码失效！'})
+            elif phone != codes[2]:
+                return Response({'status': False, 'message': '手机号错误！'})
+            elif verification_code != codes[1]:
+                return Response({'status': False, 'message': '验证码错误！'})
+            elif openid == "":
+                return Response({'status': False, 'message': 'codeid错误！'})
             else:
-                return Response({'status': True, 'uid': '1123124'})
+                return Response({'status': False, 'message': '未知错误！'})
+        db = dtmap.objects.create(id=maxid, name=name, phone=phone,
+                                  time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), openid=openid)
+        db.save()
+        return Response({'status': True, 'uid': str(maxid).zfill(8)})
+        # return Response({'status': True})
 
 
 # 对手机号进行格式校验的部分
@@ -89,11 +105,18 @@ class GetCodeView(APIView):
     def get(self, request, *args, **kwargs):
         print(request.query_params)
         # 1.获取手机号
-        # 2.对手机号进行校验
+        # 2.1.对手机号进行校验
         ser = GetCodeSerializers(data=request.query_params)
         if not ser.is_valid():
             return Response({'status': False, 'message': '手机号格式错误'})
         phone = ser.validated_data.get('phone')
+        # 2.2.判断手机号的唯一
+        try:
+            phonen = dtmap.objects.filter(phone=phone)
+        except:
+            phonen = None
+        if phonen:
+            return Response({'status': False, 'message': '手机号存在！'})
         # 3.生成随机验证码
         import random as rd
         random_code = str(rd.randint(100000, 999999))
@@ -121,10 +144,9 @@ class ImageView(APIView):
             image_path = 'Registration/' + phone + '_' + name + '.jpg'
         except:
             return Response({'status': False, 'message': '缺乏信息！'})
-        else:
-            if not os.path.exists(image_path):
-                with open(image_path, 'wb+') as f:
-                    f.write(image.read())
-                    f.close()
-                    return Response({'status': True})
-            return Response({'status': False})
+        if not os.path.exists(image_path):
+            with open(image_path, 'wb+') as f:
+                f.write(image.read())
+                f.close()
+                return Response({'status': True})
+        return Response({'status': False})
