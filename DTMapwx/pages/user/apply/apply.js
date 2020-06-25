@@ -5,8 +5,60 @@ Page({
    * 页面的初始数据
    */
   data: {
-    images: []
+    images: [],
+    currentBoxId: 'chooseType', //当前显示的view的id
+    isBoxShow: false,
+    activeNum:1,
+    steps: [{ 'stepName': '填写信息' }, { 'stepName': '证件上传' }, { 'stepName': '业务提交' },]
+
   },
+  changeBox(e){
+    let currentFlag = e.currentTarget.id;
+    switch(currentFlag){
+      case 'chooseTypenext':
+        this.setData({
+          currentBoxId: 'viewInstruction'
+        })
+        this.setData({
+          activeNum:2
+        })
+        break;
+      case 'viewInstructionPrev':
+        this.setData({
+          currentBoxId: 'chooseType'
+        })
+        this.setData({
+          activeNum:1
+        })
+        break;
+      case 'viewInstructionNext':
+        this.setData({
+          currentBoxId: 'finish'
+        })
+        this.setData({
+          activeNum:3
+        })
+        break;
+        case 'finishPrev':
+          this.setData({
+            currentBoxId: 'viewInstruction'
+          })
+          this.setData({
+            activeNum:2
+          })
+          break;
+        default:
+          this.setData({
+            currentBoxId: 'viewInstruction'
+          })
+          break;
+    }
+ 
+  },
+
+
+
+
   chooseImage(e) {
     wx.chooseImage({
       sizeType: ['original', 'compressed'],  //可选择原图或压缩后的图片

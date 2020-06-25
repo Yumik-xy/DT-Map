@@ -66,3 +66,68 @@
   width: 150rpx;
   height: 150rpx;
 }
+
+.fadeBox{
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+#one{
+  background: #f00;
+  height: 400rpx;
+}
+
+#two{
+
+  background: #ff0;
+  height: 800rpx;
+}
+
+#three{
+  background: #f0f;
+  height: 300rpx;
+}
+
+#four{
+  background: #00f;  
+  height: 600rpx;
+}
+
+button{
+  background: #cfc;
+  margin-bottom: 20rpx;
+}
+.show{
+  display: flex;
+  flex-wrap: wrap;
+}
+.hidden{
+  display: none;
+}
+.steps{
+  display:flex;
+  flex-flow: row warp;
+  margin-top: 20rpx;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+  justify-content :space-around
+}
+ 
+.step{
+   display:flex;
+ /* border: 1rpx solid black; */
+ 
+   flex-flow: column nowrap
+}
+ 
+.stepText{
+  align-items: center;
+  justify-content:space-around;
+  font-family: 'HiraginoSansGB-W3';
+  font-size: 23rpx
+}
+ 
+.step .img{
+  width: 90rpx;
+  height: 90rpx;
+}
+

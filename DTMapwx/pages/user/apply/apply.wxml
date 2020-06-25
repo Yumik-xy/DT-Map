@@ -1,5 +1,53 @@
 <!--pages/user/apply/apply.wxml-->
-<view class="apply">
+<!-- <view class="apply">
+   <text class='pf-type'>附件上传（仅支持图片）</text>
+    <view class="question-images clearFloat">
+      <block wx:for="{{images}}" wx:key="*this">
+        <view class="q-image-wrap"> -->
+          <!-- 图片缩略图  -->
+          <!-- <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image> -->
+          <!-- 移除图片的按钮  -->
+          <!-- <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
+            <image src="../../../images/cross.png"></image>
+          </view>
+        </view>
+      </block>
+      <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
+        <image src="../../../images/jiahao.png"></image>
+      </view>
+    </view>
+    <button disabled="{{images.length==0}}" class="submit" bindtap="submit"> 提交 </button>
+</view> -->
+<view class="steps">
+      <block  wx:for="{{steps}}" wx:for-index="index" wx:for-item="item">
+         <view class="step">
+          <image class="img" src="/images/{{activeNum==(index+1)?'is':''}}done.png"></image>
+          <view class="stepText">{{item.stepName}}</view>
+         </view>
+         <view class="step">
+          <image wx-if="{{(index+1)!=steps.length}}" class="img" src="/images/{{(index+1)<=activeNum?'blueline.png':'greyline.png'}}"></image>
+          <view class="stepText"></view>
+         </view>
+      </block>
+</view>
+
+<view id="findOuter">
+    <!-- 选择登记类型 -->
+    <view id="chooseType" class="{{currentBoxId == 'chooseType' ? 'show' : 'hidden'}}">
+        <view id="one" class="fadeBox"></view>
+        <button id="chooseTypenext" bindtap="changeBox">下一步</button>
+    </view>
+ 
+    <!-- 查看说明 -->
+    <view id="viewInstruction" class="{{currentBoxId == 'viewInstruction' ? 'show' : 'hidden'}}">
+        <view id="two" class="fadeBox"></view>
+        <button id="viewInstructionPrev" bindtap="changeBox">上一步</button>
+        <button id="viewInstructionNext" bindtap="changeBox">下一步</button>
+    </view>
+ 
+    <!-- 完成提示 -->
+    <view id="finish" class="{{currentBoxId == 'finish' ? 'show' : 'hidden'}}">
+        <view class="apply">
    <text class='pf-type'>附件上传（仅支持图片）</text>
     <view class="question-images clearFloat">
       <block wx:for="{{images}}" wx:key="*this">
@@ -16,5 +64,8 @@
         <image src="../../../images/jiahao.png"></image>
       </view>
     </view>
-    <button disabled="{{images.length==0}}" class="submit" bindtap="submit"> 提交 </button>
+</view>
+        <button disabled="{{images.length==0}}" class="submit" bindtap="submit"> 提交 </button>
+        <button id="finishPrev" bindtap="changeBox">上一步</button>
+    </view>
 </view>
