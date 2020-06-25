@@ -2,9 +2,9 @@ import datetime
 import os
 import time
 import base64
-import requests
-from django.db.models import Max
 
+from api.method import method
+from django.db.models import Max
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -16,29 +16,13 @@ from .models import dtmap
 
 # Create your views here.
 
-# 获取openid的部分
-def GetOpenid(coder):
-    APPID = 'wx207fabe088d7faef'
-    SECRET = '5c0b7392990ef009d4f17340a46f991d'
-    if not all([coder]):
-        return ""
-    url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + APPID + '&secret=' + SECRET + '&js_code=' + coder + '&grant_type=authorization_code'
-    res = requests.get(url=url)
-    try:
-        openid = res.json()['openid']
-    except:
-        print(res.json()['errmsg'])
-        return ""
-    print(openid)
-    return openid
-
 
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
         code = request.data.get('code')
         PHONE = request.data.get('phone')
         print(request.data, 'login')
-        openid = GetOpenid(code)
+        openid = method.GetOpenid(code)
         if openid == "":
             return Response({'status': False, 'message': 'codeid错误'})
         try:
@@ -63,7 +47,7 @@ class RegisterView(APIView):
             codes = decoder.split('-')
             stamp = float(time.time())
             max_id = dtmap.objects.all().aggregate(Max('id')).get('id__max') + 1
-            openid = GetOpenid(code)
+            openid = method.GetOpenid(code)
         except:
             return Response({'status': False, 'message': '未知错误！'})
         if not (phone == codes[2] and stamp - float(codes[0]) <= 90.0 and verification_code == codes[
@@ -85,17 +69,6 @@ class RegisterView(APIView):
         # return Response({'status': True})
 
 
-# 对手机号进行格式校验的部分
-def phone_validator(value):
-    import re
-    if not re.match("^(1[3-9])\\d{9}$", value):
-        raise ValidationError('手机号格式错误')
-
-
-class GetCodeSerializers(serializers.Serializer):
-    phone = serializers.CharField(label='手机号', validators=[phone_validator, ])
-
-
 class GetCodeView(APIView):
     # get的方法需求
     # 1.获取手机号
@@ -107,7 +80,7 @@ class GetCodeView(APIView):
         print(request.query_params)
         # 1.获取手机号
         # 2.1.对手机号进行校验
-        ser = GetCodeSerializers(data=request.query_params)
+        ser = method.GetCodeSerializers(data=request.query_params)
         if not ser.is_valid():
             return Response({'status': False, 'message': '手机号格式错误'})
         phone = ser.validated_data.get('phone')
