@@ -5,12 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
+    regionValue: [],
+    showRegion: false,
     images: [],
     currentBoxId: 'chooseType', //当前显示的view的id
     isBoxShow: false,
     activeNum:1,
     steps: [{ 'stepName': '填写信息' }, { 'stepName': '证件上传' }, { 'stepName': '业务提交' },]
 
+  },
+  chooseRegion: function () {
+    this.setData({
+      showRegion: true,
+    });
+  },
+  emitHideRegion: function (e) {
+    this.setData({
+      showRegion: e.detail.showRegion,
+      regionValue: e.detail.regionValue,
+    });
   },
   changeBox(e){
     let currentFlag = e.currentTarget.id;
