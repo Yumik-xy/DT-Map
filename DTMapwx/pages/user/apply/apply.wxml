@@ -34,13 +34,24 @@
 <view id="findOuter">
     <!-- 选择登记类型 -->
     <view id="chooseType" class="{{currentBoxId == 'chooseType' ? 'show' : 'hidden'}}">
-        <view id="one" class="fadeBox"></view>
+        <view class="place">
+        <input placeholder="请填写摆摊详细位置" ></input>
+        </view>
         <button id="chooseTypenext" bindtap="changeBox">下一步</button>
     </view>
  
     <!-- 查看说明 -->
     <view id="viewInstruction" class="{{currentBoxId == 'viewInstruction' ? 'show' : 'hidden'}}">
-        <view id="two" class="fadeBox"></view>
+      <view class="con">
+		  	<view class="con-nr">
+		  		<text>类别</text>
+		  		<input placeholder="商品类型" name="name"></input>
+		  	</view>
+	  		<view class="con-nr">
+		  		<text>摊位信息</text>
+		  		<input placeholder="摊位大小等"  name="telephone"></input>
+		  	</view>
+      </view>
         <button id="viewInstructionPrev" bindtap="changeBox">上一步</button>
         <button id="viewInstructionNext" bindtap="changeBox">下一步</button>
     </view>
@@ -65,7 +76,7 @@
       </view>
     </view>
 </view>
-        <button disabled="{{images.length==0}}" class="submit" bindtap="submit"> 提交 </button>
         <button id="finishPrev" bindtap="changeBox">上一步</button>
+        <button disabled="{{images.length==0}}" class="submit" bindtap="submit"> 提交 </button>
     </view>
 </view>
