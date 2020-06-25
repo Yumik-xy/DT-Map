@@ -8,9 +8,14 @@
 				<image class="avatarUrl" src="{{userInfo.avatarUrl}}"></image>
 				<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='butn' style="width:20vw">登录</button>
 			</view>
-			<view class="log-right">
-				<text wx:if="{{hasUserInfo}}" class="nickName">{{userInfo.nickName}}</text>
-				<text wx:if="{{hasUserInfo}}" class="userGroup">{{userGroup}}</text>
+			<view wx:if="{{hasUserInfo}}" class="log-right">
+				<view class="nickName">
+					<text class="name"  >{{userInfo.nickName}}</text>
+					<text class="uid" wx:if="{{useruid!='00000000'}}">{{useruid}}</text>
+				</view>
+				<view class="userGroup">
+					<text wx:if="{{hasUserInfo}}" >{{userGroup}}</text>
+				</view>
 			</view>
 		</view>
 		<view class="userPages">

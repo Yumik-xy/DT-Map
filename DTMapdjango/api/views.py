@@ -1,15 +1,11 @@
 import datetime
 import os
 import time
-import base64
 
 from api.method import method
 from django.db.models import Max
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
 
 from .models import dtmap
 
@@ -43,7 +39,7 @@ class RegisterView(APIView):
             encoder = request.data.get('encoder')
             code = request.data.get('code')
             verification_code = request.data.get('verification_code')
-            decoder = base64.b64decode(encoder).decode('utf-8')
+            decoder = method.aes_decode(encoder)
             codes = decoder.split('-')
             stamp = float(time.time())
             max_id = dtmap.objects.all().aggregate(Max('id')).get('id__max') + 1
@@ -66,7 +62,6 @@ class RegisterView(APIView):
                                   time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), openid=openid)
         db.save()
         return Response({'status': True, 'uid': str(max_id).zfill(8)})
-        # return Response({'status': True})
 
 
 class GetCodeView(APIView):
@@ -100,7 +95,7 @@ class GetCodeView(APIView):
         # 5.生成时间戳base64加密
         stamp = str(time.time())
         url = '{0}-{1}-{2}'.format(stamp, random_code, phone)
-        encoder = base64.b64encode(url.encode("utf-8")).decode('utf-8')
+        encoder = method.aes_encode(url)
         # 6.返回加密数据
         return Response({'status': True, 'encoder': encoder})
 

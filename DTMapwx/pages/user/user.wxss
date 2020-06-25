@@ -56,9 +56,27 @@ page{
 }
 
 .log-right .nickName{
+  display: flex;
+  align-items: center;
+}
+
+.log-right .nickName .name{
   font-size: 33rpx;
   font-weight: 650;
   color: #FFFFFF;
+}
+
+.log-right .nickName .uid{
+  /* border: 3rpx solid #8f8f8f; */
+  height: 30rpx;
+  margin-left: 10rpx;
+  padding: 3rpx 10rpx;
+  border-radius: 10rpx;
+  color: #f8f8f8;
+  background-color: #6dd8a3;
+  align-items: center;
+  font-size: 24rpx;
+  line-height: 30rpx;
 }
 
 .log-right .userGroup{

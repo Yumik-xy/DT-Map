@@ -7,8 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userGroup:"未注册用户",
+    userGroup: "未注册用户",
     userInfo: {},
+    useruid: '00000000',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
@@ -37,7 +38,7 @@ Page({
         item_image_uri: "../../images/manage.png",
         item_name: "管理"
       },
-      
+
     ],
 
   },
@@ -46,6 +47,7 @@ Page({
   getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
+
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
@@ -73,11 +75,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(getApp().globalData.userStatus == 1){
-      this.setData({
-        userGroup:"正式用户"
-      })
-    }
+    this.setData({
+      userGroup: app.globalData.userStatus,
+      useruid: app.globalData.useruid,
+    })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -95,7 +96,7 @@ Page({
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
-        lang:"zh_CN",
+        lang: "zh_CN",
         success: res => {
           app.globalData.userInfo = res.userInfo
           this.setData({
