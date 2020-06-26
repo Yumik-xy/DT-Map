@@ -62,8 +62,8 @@ Page({
   tothere: function () {
     console.log(this.data.markers)
     wx.openLocation({
-      latitude: parseFloat(this.data.markers.latitude),
-      longitude: parseFloat(this.data.markers.longitude),
+      latitude: Number(this.data.markers[0].latitude),
+      longitude: Number(this.data.markers[0].longitude),
     })
 
   },
