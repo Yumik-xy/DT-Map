@@ -106,7 +106,7 @@ Page({
       urls: images,  //所有要预览的图片
     })
   },
-  submit: function () {
+  submit: function (e) {
     var that = this
     // var imgfile;
     var namen = ['身份证正面','身份证反面','手持身份证照']

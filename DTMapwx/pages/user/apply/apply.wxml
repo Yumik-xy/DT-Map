@@ -30,12 +30,13 @@
          </view>
       </block>
 </view>
+<form bindsubmit='submit'> 
 
 <view id="findOuter">
     <!-- 选择登记类型 -->
     <view id="chooseType" class="{{currentBoxId == 'chooseType' ? 'show' : 'hidden'}}">
         <view class="place">
-        <input placeholder="请填写摆摊详细位置" ></input>
+        <input placeholder="请填写摆摊详细位置" name='place' ></input>
         </view>
         <button id="chooseTypenext" bindtap="changeBox">下一步</button>
     </view>
@@ -82,7 +83,11 @@
       </view>
     </view>
 </view>
+        <view class="finish">
         <button id="finishPrev" bindtap="changeBox">上一步</button>
-        <button disabled="{{images.length==0}}" class="submit" bindtap="submit"> 提交 </button>
+        </view>
+        <button disabled="{{images.length==0}}" class="submit" form-type='submit'> 提交 </button>
     </view>
+   
 </view>
+</form>
