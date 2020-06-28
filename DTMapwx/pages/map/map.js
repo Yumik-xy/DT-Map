@@ -21,8 +21,6 @@ Page({
     wx.getLocation({
       type: 'gcj02', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
       success: function (res) {
-        //赋值经纬度
-        // console.log(res)
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,
@@ -30,6 +28,13 @@ Page({
             latitude: res.latitude,
             longitude: res.longitude,
           }]
+        })
+      },
+      fail: function() {
+        wx.showToast({
+          title: '请手动在用户-设置-权限设置中开启',
+          icon: 'none',
+          duration: 2000
         })
       }
     })

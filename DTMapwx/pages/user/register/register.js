@@ -36,6 +36,10 @@ Page({
           })
         }
         else {
+          wx.showToast({
+            title: '验证码已发送！',
+            icon: 'none',
+          })
           that.setData({
             encoder: res.data.encoder
           })

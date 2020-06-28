@@ -9,7 +9,7 @@ Page({
       {
         turn_address: "turn_account_manage",
         item_name: "账号管理",
-        item_height: 20
+        item_height: 12
       },{
         turn_address: "turn_permission_settings",
         item_name: "权限设置",
@@ -21,6 +21,28 @@ Page({
       },
     ],
   },
+
+  turn_permission_settings: function(){
+    wx.openSetting({
+      success (res) {
+        console.log(res.authSetting)  
+      }
+    })
+  },
+
+  turn_sign_out: function(){
+    wx.removeStorage({
+      key: 'regInfo',
+      success (res) {
+        console.log(res)
+      }
+    })
+  },
+
+
+
+
+
 
   /**
    * 生命周期函数--监听页面加载
