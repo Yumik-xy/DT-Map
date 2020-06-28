@@ -1,8 +1,22 @@
 <!--pages/Template/Template.wxml-->
 
 <template name="User">
-	<view class='btn' bindtap='{{turn_adress}}'>
+	<view class='btn' bindtap='{{turn_address}}'>
 		<image class='btnImg' src="{{item_image_uri}}"></image>
 		<text>{{item_name}}</text>
 	</view>
+</template>
+
+<template name="Setup">
+	<view class="entirety" bindtap="{{turn_address}}">
+		<view class="left">
+			<text>{{item_name}}</text>
+		</view>
+		<view class="right">
+			<image src="../../../images/jump.png"></image>
+		</view>
+	</view>
+	<block wx:for="{{item_height}}" wx:key="key">
+		<view class="empty"></view>
+	</block>
 </template>

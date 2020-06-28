@@ -8,39 +8,35 @@ Page({
    */
   data: {
     userGroup: "未注册用户",
-    userInfo: {},
+    userInfo: {
+      avatarUrl : '../../images/nolog.png'
+    },
     useruid: '00000000',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
-    message: [
+    page: [
       {
-        turn_adress: "turn_manage",
-        items_details: "turn_manage",
+        turn_address: "turn_manage",
         item_image_uri: "../../images/manage.png",
         item_name: "管理"
       },
       {
-        turn_adress: "turn_register",
-        items_details: "turn_register",
+        turn_address: "turn_register",
         item_image_uri: "../../images/register.png",
         item_name: "注册"
       },
       {
-        turn_adress: "turn_apply",
-        items_details: "turn_apply",
+        turn_address: "turn_apply",
         item_image_uri: "../../images/apply.png",
         item_name: "申请"
       },
       {
-        turn_adress: "turn_manage",
-        items_details: "turn_manage",
-        item_image_uri: "../../images/manage.png",
-        item_name: "管理"
+        turn_address: "turn_setup",
+        item_image_uri: "../../images/setup.png",
+        item_name: "设置"
       },
-
     ],
-
   },
 
   //获取用户信息
@@ -54,7 +50,11 @@ Page({
     })
   },
 
-
+  turn_setup: function () {
+    wx.navigateTo({
+      url: 'setup/setup',
+    })
+  },
   turn_manage: function () {
     wx.navigateTo({
       url: 'manage/manage',

@@ -10,7 +10,7 @@
 			</view>
 			<view wx:if="{{hasUserInfo}}" class="log-right">
 				<view class="nickName">
-					<text class="name"  >{{userInfo.nickName}}</text>
+					<text class="name">{{userInfo.nickName}}</text>
 					<text class="uid" wx:if="{{useruid!='00000000'}}">{{useruid}}</text>
 				</view>
 				<view class="userGroup">
@@ -19,7 +19,7 @@
 			</view>
 		</view>
 		<view class="userPages">
-			<block wx:for="{{message}}" wx:key="id">
+			<block wx:for="{{page}}" wx:key="id">
 				<template is="User" data="{{...item}}"></template>
 			</block>
 		</view>

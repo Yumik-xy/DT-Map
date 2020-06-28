@@ -1,0 +1,9 @@
+<!--pages/user/setup/setup.wxml-->
+<import src="../../Template/Template.wxml" />
+<view class="DT_setup">
+	<view class="setupPages">
+		<block wx:for="{{page}}" wx:key="id">
+			<template is="Setup" data="{{...item}}"></template>
+		</block>
+	</view>
+</view>
