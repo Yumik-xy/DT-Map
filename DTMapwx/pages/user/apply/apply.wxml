@@ -18,6 +18,7 @@
     </view>
     <button disabled="{{images.length==0}}" class="submit" bindtap="submit"> 提交 </button>
 </view> -->
+<view class="Apply">
 <view class="steps">
 	<block wx:for="{{steps}}" wx:for-index="index" wx:for-item="item">
 		<view class="step">
@@ -65,24 +66,59 @@
 
 		<!-- 完成提示 -->
 		<view id="finish" class="{{currentBoxId == 'finish' ? 'show' : 'hidden'}}">
+		
+<!-- 身份证正面 -->
+			<scroll-view scroll-y="true" class="contain">
 			<view class="apply">
-				<text class='pf-type'>附件上传（仅支持图片）</text>
+				<text class='pf-type'>请上传身份证正面照片</text>
 				<view class="question-images clearFloat">
-					<block wx:for="{{images}}" wx:key="*this">
-						<view class="q-image-wrap">
+						<view class="q-image-wrap"  wx:if="{{images1.length > 0}}">
 							<!-- 图片缩略图  -->
-							<image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+							<image class="q-image" src="{{images1}}" mode="aspectFill"  bindtap="handleImagePreview1"></image>
 							<!-- 移除图片的按钮  -->
-							<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
+							<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage1">
 								<image src="../../../images/cross.png"></image>
 							</view>
 						</view>
-					</block>
-					<view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
-						<image src="../../../images/jiahao.png"></image>
+					<view class='uploadImgBtn' bindtap="chooseImage1" wx:if="{{images1.length < 1}}">
+						<image src="../../../images/身份证正面.png"></image>
 					</view>
 				</view>
+
+<!-- 身份证背面 -->
+					<text class='pf-type'>请上传身份证背面照片</text>
+				<view class="question-images clearFloat">
+						<view class="q-image-wrap" wx:if="{{images2.length > 0}}">
+							<!-- 图片缩略图  -->
+							<image class="q-image" src="{{images2}}" mode="aspectFill"  bindtap="handleImagePreview2"></image>
+							<!-- 移除图片的按钮  -->
+							<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage2">
+								<image src="../../../images/cross.png"></image>
+							</view>
+						</view>
+					<!-- </block> -->
+					<view class='uploadImgBtn' bindtap="chooseImage2" wx:if="{{images2.length < 1}}">
+						<image src="../../../images/身份证背面.png"></image>
+					</view>
+				</view>
+
+<!-- 手持身份证 -->
+					<text class='pf-type'>请上传手持身份证照片</text>
+				<view class="question-images clearFloat">
+						<view class="q-image-wrap" wx:if="{{images3.length > 0}}">
+							<!-- 图片缩略图  -->
+							<image class="q-image" src="{{images3}}" mode="aspectFill"  bindtap="handleImagePreview3"></image>
+							<!-- 移除图片的按钮  -->
+							<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage3">
+								<image src="../../../images/cross.png"></image>
+							</view>
+						</view>
+						<view class='uploadImgBtn1' bindtap="chooseImage3" wx:if="{{images3.length < 1}}">
+						<image src="../../../images/手持身份证.png"></image>
+					</view>
+						</view>
 			</view>
+			</scroll-view>
 			<view class="finish">
 				<button id="finishPrev" bindtap="changeBox">上一步</button>
 			</view>
@@ -91,3 +127,4 @@
 
 	</view>
 </form>
+</view>

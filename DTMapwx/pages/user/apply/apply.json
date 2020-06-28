@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "region-picker": "../user/region-picker/region-picker"
-  }
+  },
+  "disableScroll": true
 }

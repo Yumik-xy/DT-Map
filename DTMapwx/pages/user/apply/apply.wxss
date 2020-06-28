@@ -1,4 +1,10 @@
 /* pages/user/apply/apply.wxss */
+.Apply{
+  height: 100%;
+}
+.photo{
+  flex: 7;
+}
 .apply{
   width: 100%;
   height: 100%;
@@ -6,15 +12,22 @@
   flex-direction: column;
   padding: 20rpx;
 }
+.question-images {
+  justify-content: center;
+  display: flex;
+}
 .pf-type{
    color: #666666;
+   font-size: 26rpx;
    margin-bottom: 10rpx;
+   display: flex;
+   justify-content: center;
  }
 .q-image-wrap{
-  width: 150rpx;
-  height: 150rpx;
+  width: 500rpx;
+  height: 340.4rpx;
   border: 3px solid #f0f0f0;
-  float: left;
+  justify-content: center;
   margin-right: 20rpx;
   position: relative;
   overflow: hidden;
@@ -40,23 +53,37 @@
  
 .uploadImgBtn{
   display: flex;
-  width: 150rpx;
-  height: 150rpx;
+  width: 500rpx;
+  height: 340.4rpx;
   text-align: center;
   border: 6rpx solid #f0f0f0;
   float: left;
   align-items: center;
   justify-content: center;
 }
+.uploadImgBtn1{
+  display: flex;
+  width: 500rpx;
+  height: 340.4rpx;
+  text-align: center;
+  border: 6rpx solid #f0f0f0;
+  float: left;
+  align-items: center;
+  justify-content: center;
+}
+.uploadImgBtn1 image{
+  width: 280rpx;
+  height: 280rpx;
+}
+
 .uploadImgBtn image{
-  width: 80rpx;
-  height: 80rpx;
+  width: 420rpx;
+  height: 285.9rpx;
 }
 .submit{
   width:500rpx;
   line-height:85rpx;
   text-align:center;
-  margin:50rpx auto;
   background-color: #3cb778;
   border-radius:10rpx;
   color: white;
@@ -64,8 +91,8 @@
   justify-content: center;
 }
 .q-image{
-  width: 150rpx;
-  height: 150rpx;
+  width: 500rpx;
+  height: 340.4rpx;
 }
 
 .place{
@@ -85,26 +112,7 @@
   width: 100%;
   margin-bottom: 20rpx;
 }
-#one{
-  background: #f00;
-  height: 400rpx;
-}
 
-#two{
-
-  background: #ff0;
-  height: 800rpx;
-}
-
-#three{
-  background: #f0f;
-  height: 300rpx;
-}
-
-#four{
-  background: #00f;  
-  height: 600rpx;
-}
 
 button{
   background: #3cb778;
@@ -182,4 +190,7 @@ button{
 .finish{
   margin-top: 50rpx;
   width: 100%;
+}
+.contain{
+  height: 700rpx;
 }
