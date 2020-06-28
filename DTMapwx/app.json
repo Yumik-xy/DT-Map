@@ -9,7 +9,8 @@
     "pages/user/manage/manage",
     "pages/user/register/register",
     "pages/user/region-picker/region-picker",
-    "pages/user/apply/apply"
+    "pages/user/apply/apply",
+    "pages/user/setup/setup"
   ],
   "window":{
     "backgroundTextStyle":"light",

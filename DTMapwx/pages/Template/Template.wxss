@@ -1,37 +1,36 @@
 /* pages/Template/Template.wxss */
 
-/* .entirety{
-  height: 50rpx;
-  width: 750rpx;
-  background:white;
-  margin: 10rpx 0 0rpx 0;
-  padding: 12.5rpx 0 12.5rpx 15rpx ; 
-  display: flex;
-  flex-direction: row;
+.empty
+{
+  height: 1rpx;
+  width: 100%;
 }
-.left{
-  flex: 8;
+
+.entirety{
+  height: 90rpx;
+  width: 100%;
+  background:white;
+  margin: 4rpx 0rpx 0rpx 0rpx;
+  padding: 10rpx 0rpx 10rpx 35rpx ; 
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+}
+.left{
+  flex: 12;
 }
 .left text{
-  
-  color: #666666;
-}
-.left image{
-  height: 50rpx;
-  width: 50rpx;
-  margin: 0rpx 10rpx 0rpx 0;
+  color: #202020;
+  font-size: 33rpx;
 }
 .right{
   flex: 1;
 }
 .right image{
-  height: 50rpx;
-  width: 50rpx;
-  
-} */
+  height: 40rpx;
+  width: 40rpx;
+}
 
 .btn {
   width:32%;
@@ -55,7 +54,3 @@
 .btn:nth-child(3n){
   margin-right: 1%;
 }
-/* 
-.btn:not(:nth-child(3n)){
-  margin-right: 2%;
-} */

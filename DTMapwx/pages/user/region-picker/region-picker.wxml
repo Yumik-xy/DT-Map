@@ -12,7 +12,7 @@
 		<view class="free-dialog__container__content">
 			<view class="free-content {{isIphoneX ? 'ipx' : ''}}">
 				<view class="free-content__tabs">
-					<view class="free-content__tabs__tab {{region.select === index ? 'select' : ''}}" wx:for="{{region.tabs}}" wx:key="{{index}}" wx:if="{{index <= region.select}}" data-level="{{index}}" bindtap="changeRegionLevel">
+					<view class="free-content__tabs__tab {{region.select === index ? 'select' : ''}}" wx:for="{{region.tabs}}" wx:key="index" wx:if="{{index <= region.select}}" data-level="{{index}}" bindtap="changeRegionLevel">
 					            {{item.name}}
 					</view>
 				</view>

@@ -1,3 +1,5 @@
+@import "../Template/Template.wxss";
+
 page{
   background-color: #eeeeee;
 }
@@ -37,13 +39,13 @@ page{
 }
 
 .log-left .butn{
-  border: 3rpx solid #8f8f8f;
   padding: 10rpx 35rpx;
   margin: 20rpx auto;
   border-radius: 20rpx;
-  box-shadow: 0rpx 2rpx 0 2rpx #66666666;
-  font-size: 35rpx;
-  color: #666666;
+  font-size: 33rpx;
+  font-weight: 650;
+  color: #FFFFFF;
+  background-color: #3cb778;
 }
 
 .log-right{
@@ -108,5 +110,3 @@ page{
   line-height: 23rpx;
   color: #8a8a8a;
  }
-@import "../Template/Template.wxss"
-
