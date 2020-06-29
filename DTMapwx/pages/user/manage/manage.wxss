@@ -1,26 +1,36 @@
 /* pages/manage/manage.wxss */
-.manege_detail {
+.manage_detail {
   margin-top: 10rpx;
   display: flex;
   justify-content: center;
 }
 
-.detail {
+.manage_detail .detail {
   width: 90%;
-  display: flex;
-  justify-content: space-between;
   border: 1px solid #eee;
   padding: 2vh;
   border-radius: 10rpx
 }
+
+.detail .detail-title{
+  font-weight: 500rpx;
+}
+
+.detail .detail-contain{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
 
 .ticket-container {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
-
-.ticket-container .title {
+ 
+.title {
   width: 100%;
   height: 88rpx;
   background: white;
@@ -28,58 +38,59 @@
   align-items: center;
   justify-content: space-around;
 }
-
-.ticket-container .title-sel {
-  color: #24272c;
+ 
+.title-sel {
+  color: #666666;
   font-size: 32rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-.ticket-container .title-sel .line-style {
+ 
+.title-sel  .line-style{
   background: #fff;
   height: 6rpx;
   width: 40rpx;
   position: relative;
   margin-top: 10rpx;
 }
-
-.ticket-container .title-sel-selected {
+ 
+.title-sel-selected{
   color: #3cb778;
   font-size: 32rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-.ticket-container .title-sel-selected .line-style {
+.title-sel-selected .line-style{
   background: #3cb778;
   height: 6rpx;
   width: 90rpx;
   position: relative;
   margin-top: 10rpx;
 }
-
-.ticket-container .swiper {
+ 
+.swiper {
   width: 90%;
   flex: 1;
   overflow: scroll;
   margin: 0 auto;
 }
-
-.ticket-container .record-item {
+ 
+.record-item {
   margin-top: 10rpx;
   background-color: white;
   padding-bottom: 5rpx;
   padding-top: 5rpx;
   font-size: 30rpx;
 }
-
-.ticket-container .name {
+ 
+.name{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   border: 1px solid #eee;
   padding: 2vh;
-  border-radius: 10rpx
+  border-radius: 10rpx;
+  color: #666666;
 }
