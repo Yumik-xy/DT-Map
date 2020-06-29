@@ -5,6 +5,7 @@ page{
 .apply{
   height: 100%;
   width: 100%;
+  
 }
 .con{
   margin-top: 10rpx;
@@ -73,4 +74,84 @@ page{
   font-size:28rpx;
   height: 70rpx;
   flex: 10;
+}
+
+.question-images {
+  justify-content: center;
+  display: flex;
+}
+.pf-type{
+   color: #666666;
+   font-size: 26rpx;
+   /* border-bottom:1px solid #f2f2f2; */
+   display: flex;
+   justify-content: center;
+   background-color: white;
+   align-items: center;
+   
+ }
+.q-image-wrap{
+  width: 100%;
+  height: 340.4rpx;
+  border-bottom:1px solid #f2f2f2;
+  background-color: white;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+.q-image-remover{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100%;
+  background: #3cb778;
+  position: absolute;
+  top:-50rpx;
+  right:-50rpx;
+ 
+}
+.q-image-remover image{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  left:10rpx;
+  bottom:10rpx;
+  color:#fff;
+}
+ 
+.uploadImgBtn{
+  display: flex;
+  width: 100%;
+  height: 340.4rpx;
+  text-align: center;
+  border-bottom:1px solid #f2f2f2;
+  float: left;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+.uploadImgBtn1{
+  display: flex;
+  width: 100%;
+  height: 340.4rpx;
+  text-align: center;
+  border-bottom:1px solid #f2f2f2;
+  float: left;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+.uploadImgBtn1 image{
+  width: 280rpx;
+  height: 280rpx;
+}
+
+.uploadImgBtn image{
+  width: 420rpx;
+  height: 285.9rpx;
+}
+.q-image{
+  width: 500rpx;
+  height: 340.4rpx;
+  justify-content: center;
 }
