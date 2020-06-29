@@ -95,6 +95,12 @@
 					"pathName": "pages/user/setup/setup",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/manage/manage",
+					"pathName": "pages/user/manage/manage",
+					"scene": null
 				}
 			]
 		}
