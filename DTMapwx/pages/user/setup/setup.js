@@ -1,4 +1,6 @@
 // pages/user/setup/setup.js
+var app = require("../../../app.js")
+
 Page({
 
   /**
@@ -7,19 +9,36 @@ Page({
   data: {
     page: [
       {
-        turn_address: "turn_account_manage",
-        item_name: "账号管理",
+        turn_address: "turn_change_phonenumber",
+        item_name: "改绑手机号",
         item_height: 12
       },{
         turn_address: "turn_permission_settings",
         item_name: "权限设置",
-        item_height: 30
+        item_height: 0
       },{
+        turn_address: "turn_privacy_policy",
+        item_name: "隐私政策",
+        item_height: 0
+      },{
+        turn_address: "turn_help",
+        item_name: "帮助",
+        item_height: 0
+      },{
+        turn_address: "turn_feedback",
+        item_name: "意见反馈",
+        item_height: 30
+      },  
+      {
         turn_address: "turn_sign_out",
         item_name: "退出DTMap",
         item_height: 0
       },
     ],
+  },
+
+  turn_change_phonenumber: function(){
+
   },
 
   turn_permission_settings: function(){
@@ -35,6 +54,7 @@ Page({
       key: 'regInfo',
       success (res) {
         console.log(res)
+        
       }
     })
   },

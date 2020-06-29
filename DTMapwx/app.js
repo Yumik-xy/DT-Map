@@ -2,6 +2,10 @@
 
 App({
   onLaunch: function () {
+    this.Login()
+  },
+
+  Login: function() {
     // 展示本地存储能力
     var that = this
     var logs = wx.getStorageSync('logs') || []
@@ -42,15 +46,8 @@ App({
     // 登录
     wx.login({
       success: res => {
-        // wx.request({
-        //   url: 'http://127.0.0.1:8000/api/login/',
-        //   data: { code: res.code },
-        //   method: 'GET',
-        // })
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
-    // 获取用户信息
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -70,6 +67,7 @@ App({
       }
     })
   },
+
   globalData: {
     userInfo: null,
     userStatus: '未注册用户',
