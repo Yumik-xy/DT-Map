@@ -60,3 +60,20 @@ button{
 .contain{
   height: 700rpx;
 }
+.con-nr1 textarea{
+  /* float:right; */
+  font-size:28rpx;
+  height: 140rpx;
+  flex: 6;
+}
+.con-nr1{
+  padding-top: 10rpx;
+  height: 140rpx;
+  background-color: white;
+  display: flex;
+}
+.con-nr1 text{
+  align-items: center;
+  flex: 2;
+  line-height: 140rpx;
+}

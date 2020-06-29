@@ -17,9 +17,9 @@
 					<input disabled placeholder="选择城市" name="address" value="{{regionValue[0].name}}{{regionValue[1].name}}{{regionValue[2].name}}">
 					</input>
 				</view>
-				<view class="con-nr">
+				<view class="con-nr1">
 					<text>详细位置</text>
-					<input placeholder="具体街道" name="place"></input>
+					<textarea placeholder="请填写具体街道" name="place"></textarea>
 				</view>
 			</view>
 			<region-picker region-value="{{regionValue}}" show-region="{{showRegion}}" bind:myevent="emitHideRegion"></region-picker>
