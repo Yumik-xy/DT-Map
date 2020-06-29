@@ -100,6 +100,13 @@
 					"id": -1,
 					"name": "pages/user/manage/manage",
 					"pathName": "pages/user/manage/manage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/apply/apply",
+					"pathName": "pages/user/apply/apply",
 					"scene": null
 				}
 			]

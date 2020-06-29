@@ -1,49 +1,8 @@
 <!--pages/user/apply/apply.wxml-->
-<!-- <view class="apply">
-   <text class='pf-type'>附件上传（仅支持图片）</text>
-    <view class="question-images clearFloat">
-      <block wx:for="{{images}}" wx:key="*this">
-        <view class="q-image-wrap"> -->
-<!-- 图片缩略图  -->
-<!-- <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image> -->
-<!-- 移除图片的按钮  -->
-<!-- <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
-            <image src="../../../images/cross.png"></image>
-          </view>
-        </view>
-      </block>
-      <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
-        <image src="../../../images/jiahao.png"></image>
-      </view>
-    </view>
-    <button disabled="{{images.length==0}}" class="submit" bindtap="submit"> 提交 </button>
-</view> -->
+
 <view class="Apply">
-<view class="steps">
-	<block wx:for="{{steps}}" wx:for-index="index" wx:for-item="item">
-		<view class="step">
-			<image class="img" src="/images/{{(index+1)<=activeNum?'isdone.png':'done.png'}}"></image>
-			<view class="stepText">{{item.stepName}}</view>
-		</view>
-		<view class="step">
-			<image wx-if="{{(index+1)!=steps.length}}" class="img" src="/images/{{(index+2)<=activeNum?'isdoneline.png':'doneline.png'}}"></image>
-			<view class="stepText"></view>
-		</view>
-	</block>
-</view>
-<form bindsubmit='submit'>
-
-	<view id="findOuter">
-		<!-- 选择登记类型 -->
-		<view id="chooseType" class="{{currentBoxId == 'chooseType' ? 'show' : 'hidden'}}">
-			<view class="place">
-				<input placeholder="请填写摆摊详细位置" name='place'></input>
-			</view>
-			<button id="chooseTypenext" bindtap="changeBox">下一步</button>
-		</view>
-
-		<!-- 查看说明 -->
-		<view id="viewInstruction" class="{{currentBoxId == 'viewInstruction' ? 'show' : 'hidden'}}">
+	<form bindsubmit='submit'>
+		<view class="findOuter">
 			<view class="con">
 				<view class="con-nr">
 					<text>类别</text>
@@ -58,73 +17,13 @@
 					<input disabled placeholder="选择城市" name="address" value="{{regionValue[0].name}}{{regionValue[1].name}}{{regionValue[2].name}}">
 					</input>
 				</view>
-			</view>
-			<button id="viewInstructionPrev" bindtap="changeBox">上一步</button>
-			<button id="viewInstructionNext" bindtap="changeBox">下一步</button>
-		</view>
-		<region-picker region-value="{{regionValue}}" show-region="{{showRegion}}" bind:myevent="emitHideRegion"></region-picker>
-
-		<!-- 完成提示 -->
-		<view id="finish" class="{{currentBoxId == 'finish' ? 'show' : 'hidden'}}">
-		
-<!-- 身份证正面 -->
-			<scroll-view scroll-y="true" class="contain">
-			<view class="apply">
-				<text class='pf-type'>请上传身份证正面照片</text>
-				<view class="question-images clearFloat">
-						<view class="q-image-wrap"  wx:if="{{images1.length > 0}}">
-							<!-- 图片缩略图  -->
-							<image class="q-image" src="{{images1}}" mode="aspectFill"  bindtap="handleImagePreview1"></image>
-							<!-- 移除图片的按钮  -->
-							<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage1">
-								<image src="../../../images/cross.png"></image>
-							</view>
-						</view>
-					<view class='uploadImgBtn' bindtap="chooseImage1" wx:if="{{images1.length < 1}}">
-						<image src="../../../images/身份证正面.png"></image>
-					</view>
+				<view class="con-nr">
+					<text>详细位置</text>
+					<input placeholder="具体街道" name="place"></input>
 				</view>
-
-<!-- 身份证背面 -->
-					<text class='pf-type'>请上传身份证背面照片</text>
-				<view class="question-images clearFloat">
-						<view class="q-image-wrap" wx:if="{{images2.length > 0}}">
-							<!-- 图片缩略图  -->
-							<image class="q-image" src="{{images2}}" mode="aspectFill"  bindtap="handleImagePreview2"></image>
-							<!-- 移除图片的按钮  -->
-							<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage2">
-								<image src="../../../images/cross.png"></image>
-							</view>
-						</view>
-					<!-- </block> -->
-					<view class='uploadImgBtn' bindtap="chooseImage2" wx:if="{{images2.length < 1}}">
-						<image src="../../../images/身份证背面.png"></image>
-					</view>
-				</view>
-
-<!-- 手持身份证 -->
-					<text class='pf-type'>请上传手持身份证照片</text>
-				<view class="question-images clearFloat">
-						<view class="q-image-wrap" wx:if="{{images3.length > 0}}">
-							<!-- 图片缩略图  -->
-							<image class="q-image" src="{{images3}}" mode="aspectFill"  bindtap="handleImagePreview3"></image>
-							<!-- 移除图片的按钮  -->
-							<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage3">
-								<image src="../../../images/cross.png"></image>
-							</view>
-						</view>
-						<view class='uploadImgBtn1' bindtap="chooseImage3" wx:if="{{images3.length < 1}}">
-						<image src="../../../images/手持身份证.png"></image>
-					</view>
-						</view>
 			</view>
-			</scroll-view>
-			<view class="finish">
-				<button id="finishPrev" bindtap="changeBox">上一步</button>
-			</view>
+			<region-picker region-value="{{regionValue}}" show-region="{{showRegion}}" bind:myevent="emitHideRegion"></region-picker>
 			<button disabled="{{images.length==0}}" class="submit" form-type='submit'> 提交 </button>
 		</view>
-
-	</view>
-</form>
+	</form>
 </view>
