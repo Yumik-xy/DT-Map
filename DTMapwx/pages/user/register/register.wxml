@@ -27,56 +27,54 @@
 				<input placeholder="食品、服饰、日用百货等" name="kind" value=""></input>
 			</view>
 		</view>
-					<view class="apply">
-				<text class='pf-type'>请上传身份证正面照片</text>
-				<view class="question-images clearFloat">
-						<view class="q-image-wrap"  wx:if="{{images1.length > 0}}">
-							<!-- 图片缩略图  -->
-							<image class="q-image" src="{{images1}}" mode="aspectFill"  bindtap="handleImagePreview1"></image>
-							<!-- 移除图片的按钮  -->
-							<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage1">
-								<image src="../../../images/cross.png"></image>
-							</view>
-						</view>
-					<view class='uploadImgBtn' bindtap="chooseImage1" wx:if="{{images1.length < 1}}">
-						<image src="../../../images/身份证正面.png"></image>
-					</view>
+		<text class='pf-type'>请上传身份证正面照片</text>
+		<view class="question-images clearFloat">
+			<view class="q-image-wrap" wx:if="{{images1.length > 0}}">
+				<!-- 图片缩略图  -->
+				<image class="q-image" src="{{images1}}" mode="aspectFit" bindtap="handleImagePreview1"></image>
+				<!-- 移除图片的按钮  -->
+				<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage1">
+					<image src="../../../images/cross.png"></image>
 				</view>
-
-<!-- 身份证背面 -->
-					<text class='pf-type'>请上传身份证背面照片</text>
-				<view class="question-images clearFloat">
-						<view class="q-image-wrap" wx:if="{{images2.length > 0}}">
-							<!-- 图片缩略图  -->
-							<image class="q-image" src="{{images2}}" mode="aspectFill"  bindtap="handleImagePreview2"></image>
-							<!-- 移除图片的按钮  -->
-							<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage2">
-								<image src="../../../images/cross.png"></image>
-							</view>
-						</view>
-					<!-- </block> -->
-					<view class='uploadImgBtn' bindtap="chooseImage2" wx:if="{{images2.length < 1}}">
-						<image src="../../../images/身份证背面.png"></image>
-					</view>
-				</view>
-
-<!-- 手持身份证 -->
-					<text class='pf-type'>请上传手持身份证照片</text>
-				<view class="question-images clearFloat">
-						<view class="q-image-wrap" wx:if="{{images3.length > 0}}">
-							<!-- 图片缩略图  -->
-							<image class="q-image" src="{{images3}}" mode="aspectFill"  bindtap="handleImagePreview3"></image>
-							<!-- 移除图片的按钮  -->
-							<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage3">
-								<image src="../../../images/cross.png"></image>
-							</view>
-						</view>
-						<view class='uploadImgBtn1' bindtap="chooseImage3" wx:if="{{images3.length < 1}}">
-						<image src="../../../images/手持身份证.png"></image>
-					</view>
-						</view>
 			</view>
-		
+			<view class='uploadImgBtn' bindtap="chooseImage1" wx:if="{{images1.length < 1}}">
+				<image src="../../../images/身份证正面.png" mode="aspectFit"></image>
+			</view>
+		</view>
+
+		<!-- 身份证背面 -->
+		<text class='pf-type'>请上传身份证背面照片</text>
+		<view class="question-images clearFloat">
+			<view class="q-image-wrap" wx:if="{{images2.length > 0}}">
+				<!-- 图片缩略图  -->
+				<image class="q-image" src="{{images2}}" mode="aspectFit" bindtap="handleImagePreview2"></image>
+				<!-- 移除图片的按钮  -->
+				<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage2">
+					<image src="../../../images/cross.png"></image>
+				</view>
+			</view>
+			<!-- </block> -->
+			<view class='uploadImgBtn' bindtap="chooseImage2" wx:if="{{images2.length < 1}}">
+				<image src="../../../images/身份证背面.png" mode="aspectFit"></image>
+			</view>
+		</view>
+
+		<!-- 手持身份证 -->
+		<text class='pf-type'>请上传手持身份证照片</text>
+		<view class="question-images clearFloat">
+			<view class="q-image-wrap" wx:if="{{images3.length > 0}}">
+				<!-- 图片缩略图  -->
+				<image class="q-image" src="{{images3}}" mode="aspectFit" bindtap="handleImagePreview3"></image>
+				<!-- 移除图片的按钮  -->
+				<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage3">
+					<image src="../../../images/cross.png"></image>
+				</view>
+			</view>
+			<view class='uploadImgBtn' bindtap="chooseImage3" wx:if="{{images3.length < 1}}">
+				<image src="../../../images/手持身份证.png" mode="aspectFit"></image>
+			</view>
+		</view>
+
 		<region-picker region-value="{{regionValue}}" show-region="{{showRegion}}" bind:myevent="emitHideRegion"></region-picker>
 		<!-- 加一个禁止按钮 判断 {{encoder != 0}} -->
 		<button disabled="{{encoder==0}}" class="submit" form-type='submit'> 确定 </button>

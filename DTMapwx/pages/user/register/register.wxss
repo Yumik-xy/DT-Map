@@ -1,51 +1,55 @@
 /* pages/apply/apply.wxss */
-page{
-  background-color: #eeeeee;
+page {
+  background-color: white;
 }
-.apply{
+
+.apply {
   height: 100%;
   width: 100%;
-  
-}
-.con{
-  margin-top: 10rpx;
-  line-height:70rpx;
 }
 
-.con view{
-  /* margin-left:30rpx; */
+.con {
+  margin: 20rpx 30rpx 50rpx 30rpx;
+  line-height: 70rpx;
+}
+
+.con view {
   padding-left: 30rpx;
-  border-bottom:1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
 }
 
-.con view text{
+.con view text {
   font-size: 32rpx;
   color: #666666;
 }
-.con-nr{
+
+.con-nr {
   background-color: white;
   display: flex;
 }
-.con-nr text{
+
+.con-nr text {
   flex: 2;
 }
-.con-nr input{
-  float:right;
-  font-size:28rpx;
+
+.con-nr input {
+  float: right;
+  font-size: 28rpx;
   height: 70rpx;
   flex: 6;
 }
 
-.submit{
-  width:500rpx;
-  line-height:85rpx;
-  text-align:center;
-  margin:50rpx auto;
+.submit {
+  width: 500rpx;
+  line-height: 85rpx;
+  text-align: center;
+  margin: 50rpx auto;
   background-color: #3cb778;
-  border-radius:10rpx;
+  border-radius: 10rpx;
   color: white;
 }
-.code{
+
+.code {
   border: 3rpx solid #8f8f8f;
   margin-top: 10rpx;
   padding: 10rpx 35rpx;
@@ -55,23 +59,27 @@ page{
   color: #666666;
   align-items: center;
 }
-.vercode{
+
+.vercode {
   height: 60rpx;
   align-items: center;
   line-height: 300rpx;
   flex: 5;
   margin-right: 20rpx;
 }
-.con-code{
+
+.con-code {
   background-color: white;
   display: flex;
 }
-.con-code text{
+
+.con-code text {
   flex: 6;
 }
-.con-code input{
-  float:right;
-  font-size:28rpx;
+
+.con-code input {
+  float: right;
+  font-size: 28rpx;
   height: 70rpx;
   flex: 10;
 }
@@ -80,77 +88,72 @@ page{
   justify-content: center;
   display: flex;
 }
-.pf-type{
-   color: #666666;
-   font-size: 26rpx;
-   /* border-bottom:1px solid #f2f2f2; */
-   display: flex;
-   justify-content: center;
-   background-color: white;
-   align-items: center;
-   
- }
-.q-image-wrap{
+
+.pf-type {
+  color: #666666;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.q-image-wrap {
   width: 100%;
   height: 340.4rpx;
-  border-bottom:1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
   background-color: white;
   justify-content: center;
   position: relative;
   overflow: hidden;
   display: flex;
 }
-.q-image-remover{
+
+.q-image-remover {
   width: 100rpx;
   height: 100rpx;
   border-radius: 100%;
   background: #3cb778;
   position: absolute;
-  top:-50rpx;
-  right:-50rpx;
- 
+  top: -50rpx;
+  right: -50rpx;
+
 }
-.q-image-remover image{
+
+.q-image-remover image {
   width: 50rpx;
   height: 50rpx;
   position: absolute;
-  left:10rpx;
-  bottom:10rpx;
-  color:#fff;
+  left: 10rpx;
+  bottom: 10rpx;
+  color: #fff;
 }
- 
-.uploadImgBtn{
+
+.uploadImgBtn {
+  margin: 20rpx 30rpx 50rpx 30rpx;
   display: flex;
   width: 100%;
   height: 340.4rpx;
   text-align: center;
-  border-bottom:1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
   float: left;
   align-items: center;
   justify-content: center;
   background-color: white;
 }
-.uploadImgBtn1{
-  display: flex;
-  width: 100%;
-  height: 340.4rpx;
-  text-align: center;
-  border-bottom:1px solid #f2f2f2;
-  float: left;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-}
-.uploadImgBtn1 image{
+
+.uploadImgBtn1 image {
   width: 280rpx;
   height: 280rpx;
 }
 
-.uploadImgBtn image{
+.uploadImgBtn image {
   width: 420rpx;
   height: 285.9rpx;
 }
-.q-image{
+
+.q-image {
   width: 500rpx;
   height: 340.4rpx;
   justify-content: center;
