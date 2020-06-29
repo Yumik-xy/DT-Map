@@ -19,7 +19,7 @@
 }
  
 .title-sel {
-  color: #24272c;
+  color: #666666;
   font-size: 32rpx;
   display: flex;
   flex-direction: column;
@@ -66,8 +66,10 @@
  
 .name{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   border: 1px solid #eee;
   padding: 2vh;
-  border-radius: 10rpx
+  border-radius: 10rpx;
+  color: #666666;
 }

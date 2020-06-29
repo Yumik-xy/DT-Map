@@ -6,9 +6,9 @@ Page({
    */
   data: {
     currentIndex: 0,
-    "firstList": [{ name: 'w券1', money: '5.00' }, { name: 'w券2', money: '50.00'}],
-    "secondList": [{ name: 'y券1', money: '10.00' }, { name: 'y券2', money: '20.00' }],
-    "thirdList": [{ name: 'g券1', money: '30.00' }, { name: 'g券2', money: '40.00' }],
+    "firstList": [{ name: '阿尔及利亚', money: '可' }, { name: '布宜诺斯艾利斯', money: '可'}],
+    "secondList": [{ name: '波斯尼亚', money: '等' }, { name: '黑塞哥维那', money: '等' }],
+    "thirdList": [{ name: '巴布亚新几内亚', money: ':(' }, { name: '堪察加彼得罗巴甫洛夫斯克', money: '?' }],
   },
  
   //swiper切换时会调用

@@ -6,16 +6,16 @@
       <!--Tab布局-->
       <view class='title'>
         <view class="{{0 == currentIndex ? 'title-sel-selected' : 'title-sel'}}" bindtap='titleClick' data-idx='0'>
-          <text>未使用</text>
+          <text>已审核</text>
           <hr class="line-style"/>
         </view>
         
         <view class="{{1 == currentIndex ? 'title-sel-selected' : 'title-sel'}}" bindtap='titleClick' data-idx='1'>
-          <text>已使用</text>
+          <text>待审核</text>
           <hr class="line-style"/>
         </view>
         <view class="{{2 == currentIndex ? 'title-sel-selected' : 'title-sel'}}" bindtap='titleClick' data-idx='2'>
-          <text>已过期</text>
+          <text>未过审</text>
           <hr class="line-style" />
         </view>
       </view>
@@ -25,24 +25,24 @@
         <swiper-item class='swiper'>
           <view wx:for="{{firstList}}" wx:for-item="item" class='record-item'>
             <view class='name'>
-              <span>名称：{{item.name}}</span>
-              <span>面额：{{item.money}}</span>
+              <span>地区：{{item.name}}</span>
+              <span>审核进度：{{item.money}}</span>
             </view>
           </view>
         </swiper-item>
         <swiper-item class='swiper' class='swiper'>
           <view wx:for="{{secondList}}" wx:for-item="item" class='record-item'>
             <view class='name'>
-              <span>名称：{{item.name}}</span>
-              <span>面额：{{item.money}}</span>
+              <span>地区：{{item.name}}</span>
+              <span>审核进度：{{item.money}}</span>
             </view>
           </view>
         </swiper-item>
         <swiper-item class='swiper' class='swiper'>
           <view wx:for="{{thirdList}}" wx:for-item="item" class='record-item'>
            <view class='name'>
-              <span>名称：{{item.name}}</span>
-              <span>面额：{{item.money}}</span>
+              <span>地区：{{item.name}}</span>
+              <span>原因：{{item.money}}</span>
             </view>
           </view>
         </swiper-item>
