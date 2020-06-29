@@ -1,5 +1,19 @@
 <!--pages/manage/manage.wxml-->
 
+<view class='manage_detail'>
+  <view class="detail">
+    <view class="detail-title">
+    <text>当前审核进度：</text>
+    </view>
+  <view class="detail-container">
+    <text>已审核：1</text>
+    <text>审核失败：1</text>
+<text>待审核：1</text>
+  </view>
+ </view>
+</view>
+
+
 <view class='ticket-container'>
 	<scroll-view scroll-y bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 		<!--Tab布局-->

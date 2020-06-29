@@ -14,13 +14,16 @@
 }
 
 .detail .detail-title{
-  font-weight: 500rpx;
+  font-size: 32rpx;
+  padding-right: 40rpx;
+  padding-bottom: 20rpx;
 }
 
-.detail .detail-contain{
-  width: 90%;
+.detail .detail-container{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  font-size: 30rpx;
+  color: #666666;
 }
 
 
