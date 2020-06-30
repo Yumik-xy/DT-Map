@@ -19,7 +19,7 @@
 				</view>
 				<view class="con-nr1">
 					<text>详细位置</text>
-					<textarea placeholder="请填写具体街道" name="place"></textarea>
+					<textarea placeholder="请填写具体街道" placeholder-style="line-height: 140rpx;" name="place"></textarea>
 				</view>
 			</view>
 			<region-picker region-value="{{regionValue}}" show-region="{{showRegion}}" bind:myevent="emitHideRegion"></region-picker>
