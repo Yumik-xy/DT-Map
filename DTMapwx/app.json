@@ -12,6 +12,7 @@
     "pages/user/apply/apply",
     "pages/user/setup/setup",
     "pages/user/setup/help/help",
+    "pages/user/setup/changephonenumber/changephonenumber",
     "pages/user/setup/feedback/feedback",
     "pages/user/setup/privacy/privacy"
   ],

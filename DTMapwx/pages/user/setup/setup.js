@@ -12,23 +12,23 @@ Page({
         turn_address: "turn_change_phonenumber",
         item_name: "改绑手机号",
         item_height: 12
-      },{
+      }, {
         turn_address: "turn_permission_settings",
         item_name: "权限设置",
         item_height: 0
-      },{
+      }, {
         turn_address: "turn_privacy_policy",
         item_name: "隐私政策",
         item_height: 0
-      },{
+      }, {
         turn_address: "turn_help",
         item_name: "帮助",
         item_height: 0
-      },{
+      }, {
         turn_address: "turn_feedback",
         item_name: "意见反馈",
         item_height: 30
-      },  
+      },
       {
         turn_address: "turn_sign_out",
         item_name: "退出DTMap",
@@ -36,41 +36,42 @@ Page({
       },
     ],
   },
-  turn_privacy_policy:function(){
+  turn_privacy_policy: function () {
     wx.navigateTo({
       url: 'privacy/privacy',
     })
   },
-  turn_feedback:function(){
+  turn_feedback: function () {
     wx.navigateTo({
       url: 'feedback/feedback',
     })
   },
-  turn_help:function(){
+  turn_help: function () {
     wx.navigateTo({
       url: 'help/help',
     })
   },
-  
 
-  turn_change_phonenumber: function(){
-
+  turn_change_phonenumber: function () {
+    wx.navigateTo({
+      url: 'changephonenumber/changephonenumber',
+    })
   },
 
-  turn_permission_settings: function(){
+  turn_permission_settings: function () {
     wx.openSetting({
-      success (res) {
-        console.log(res.authSetting)  
+      success(res) {
+        console.log(res.authSetting)
       }
     })
   },
 
-  turn_sign_out: function(){
+  turn_sign_out: function () {
     wx.removeStorage({
       key: 'regInfo',
-      success (res) {
+      success(res) {
         console.log(res)
-        
+
       }
     })
   },
