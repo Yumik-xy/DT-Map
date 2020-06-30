@@ -1,1 +1,93 @@
 /* pages/user/setup/feedback/feedback.wxss */
+page{
+  background-color: #eeeeee;
+}
+.feedback{
+  display: flex;
+  flex-direction: column;
+}
+.iput{
+  background-color: white;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-bottom: 30rpx;
+  padding-top: 30rpx;
+  margin-bottom: 30rpx;
+  font-size: 25rpx;
+  
+}
+.upLoad{
+  background-color: white;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  padding-bottom: 15rpx;
+  padding-top: 15rpx;
+  height: 300rpx;
+  padding-top: 50rpx;
+  border-bottom: 1px solid #e6e6e6;
+}
+/* pages/user/apply/apply.wxss */
+.pf-type{
+  color: #666666;
+}
+.q-image-wrap{
+  margin-top: 20rpx;
+ width: 200rpx;
+ height: 200rpx;
+ border: 3px solid #f0f0f0;
+ float: left;
+ margin-right: 20rpx;
+ position: relative;
+ overflow: hidden;
+ border-radius: 30rpx;
+}
+.q-image-remover{
+ width: 100rpx;
+ height: 100rpx;
+ border-radius: 100%;
+ background: #3cb778;
+ position: absolute;
+ top:-50rpx;
+ right:-50rpx;
+
+}
+.q-image-remover image{
+ width: 40rpx;
+ height: 40rpx;
+ position: absolute;
+ left:10rpx;
+ bottom:10rpx;
+ color:#fff;
+}
+.q-image{
+  width:200rpx ;
+  height: 200rpx;
+}
+.uploadImgBtn{
+ margin-top: 20rpx;
+ display: flex;
+ width: 200rpx;
+ height: 200rpx;
+ text-align: center;
+ /* line-height: 140rpx; */
+ border: 6rpx solid #f0f0f0;
+ float: left;
+ align-items: center;
+ justify-content: center;
+ background-color: #eeeeee;
+ border-radius: 30rpx;
+ border: 6rpx dashed #e6e6e6;
+}
+.uploadImgBtn image{
+ width: 80rpx;
+ height: 80rpx;
+}
+.submit{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  background-color:#3cb778;
+  border-radius: 0;
+  font-weight: 500;
+}
