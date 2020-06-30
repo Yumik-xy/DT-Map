@@ -120,7 +120,6 @@ page {
   position: absolute;
   top: -50rpx;
   right: -50rpx;
-
 }
 
 .q-image-remover image {

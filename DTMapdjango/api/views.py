@@ -1,13 +1,16 @@
 import datetime
 import os
 import time
+import json
 
 from api.method import method
 from django.db.models import Max
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.core import serializers
 
-from .models import dtmap
+from .models import dt_user
+from .models import dt_notifies
 
 
 # Create your views here.
@@ -22,7 +25,7 @@ class LoginView(APIView):
         if openid == "":
             return Response({'status': False, 'message': 'codeid错误'})
         try:
-            db = dtmap.objects.get(openid=openid)
+            db = dt_user.objects.get(openid=openid)
         except:
             return Response({'status': False, 'message': '未注册！'})
         if not db.phone == PHONE:
@@ -42,7 +45,7 @@ class RegisterView(APIView):
             decoder = method.aes_decode(encoder)
             codes = decoder.split('-')
             stamp = float(time.time())
-            max_id = dtmap.objects.all().aggregate(Max('id')).get('id__max') + 1
+            max_id = dt_user.objects.all().aggregate(Max('id')).get('id__max') + 1
             openid = method.GetOpenid(code)
         except:
             return Response({'status': False, 'message': '未知错误！'})
@@ -58,8 +61,8 @@ class RegisterView(APIView):
                 return Response({'status': False, 'message': 'codeid错误！'})
             else:
                 return Response({'status': False, 'message': '未知错误！'})
-        db = dtmap.objects.create(id=max_id, name=name, phone=phone,
-                                  time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), openid=openid)
+        db = dt_user.objects.create(id=max_id, name=name, phone=phone,
+                                    time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), openid=openid)
         db.save()
         return Response({'status': True, 'uid': str(max_id).zfill(8)})
 
@@ -81,7 +84,7 @@ class GetCodeView(APIView):
         phone = ser.validated_data.get('phone')
         # 2.2.判断手机号的唯一
         try:
-            phonen = dtmap.objects.filter(phone=phone)
+            phonen = dt_user.objects.filter(phone=phone)
         except:
             phonen = None
         if phonen:
@@ -119,3 +122,12 @@ class ImageView(APIView):
                 f.close()
                 return Response({'status': True})
         return Response({'status': False})
+
+
+class GetNotify(APIView):
+    def get(self, request, *args, **kwargs):
+        print(request.query_params.get('id'))
+        json_data = {}
+        notifies = dt_notifies.objects.filter().values()
+        json_data["data"] = list(notifies)
+        return Response({'data': json_data})

@@ -54,3 +54,5 @@ def aes_encode(data):
     data = str.encode(data)
     aes = AES.new(str.encode(KEY), AES.MODE_ECB)  # 初始化加密器
     return str(base64.encodebytes(aes.encrypt(data)), encoding='utf8').replace('\n', '')  # 加密
+
+
