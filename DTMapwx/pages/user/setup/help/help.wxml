@@ -1,10 +1,13 @@
 <!--pages/user/setup/help/help.wxml-->
 <view class="listMain">
-  <view class="list" wx:for="{{list}}" wx:key="index">
-    <view class="title">{{item.title}}</view>
-    <view class="desc {{item.isShow ? 'show' : 'hide'}}">{{item.desc}}</view>
-    <text class="listBtn" bindtap="listBtn" wx:if="{{!item.isShow}}" data-index="{{index}}">展开</text>
-    <text class="listBtn" bindtap="listBtn" wx:if="{{item.isShow}}" data-index="{{index}}">关闭</text>
-  </view>
+	<view class="list" wx:for="{{list}}" wx:key="index">
+		<view class="title">
+			<text class="tit">{{item.title}}</text>
+			<text class="listBtn" bindtap="listBtn" wx:if="{{!item.isShow}}" data-index="{{index}}">展开</text>
+			<text class="listBtn" bindtap="listBtn" wx:if="{{item.isShow}}" data-index="{{index}}">关闭</text>
+		</view>
+		<view class="desc {{item.isShow ? 'show' : 'hide'}}">
+			<rich-text nodes='{{item.desc}}'></rich-text>
+		</view>
+	</view>
 </view>
-
