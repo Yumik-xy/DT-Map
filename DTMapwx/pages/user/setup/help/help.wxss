@@ -1,1 +1,31 @@
 /* pages/user/setup/help/help.wxss */
+.listMain {
+  padding: 30rpx;
+}
+.listMain .list{
+  border-bottom: 1rpx solid #ddd;
+  padding: 20rpx 10rpx;
+  position: relative;
+}
+.listMain .list .title{
+  font-size: 30rpx;
+  color: #333;
+  width: 80%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+.listMain .list .desc{
+  font-size: 24rpx;
+  color: #666;
+}
+.listMain .list .listBtn{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+.show{ display: block;}
+.hide{ display: none;}

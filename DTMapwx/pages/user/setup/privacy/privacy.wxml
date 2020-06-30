@@ -1,2 +1,7 @@
 <!--pages/user/setup/privacy/privacy.wxml-->
-<text>pages/user/setup/privacy/privacy.wxml</text>
+
+<view class="DT_privacy">
+  <view class="privacy">
+    <rich-text nodes="{{privacytext}}"></rich-text>
+  </view>
+</view>
