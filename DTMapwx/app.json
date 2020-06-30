@@ -10,7 +10,10 @@
     "pages/user/register/register",
     "pages/user/region-picker/region-picker",
     "pages/user/apply/apply",
-    "pages/user/setup/setup"
+    "pages/user/setup/setup",
+    "pages/user/setup/help/help",
+    "pages/user/setup/feedback/feedback",
+    "pages/user/setup/privacy/privacy"
   ],
   "window":{
     "backgroundTextStyle":"light",

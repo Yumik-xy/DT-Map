@@ -36,6 +36,22 @@ Page({
       },
     ],
   },
+  turn_privacy_policy:function(){
+    wx.navigateTo({
+      url: 'privacy/privacy',
+    })
+  },
+  turn_feedback:function(){
+    wx.navigateTo({
+      url: 'feedback/feedback',
+    })
+  },
+  turn_help:function(){
+    wx.navigateTo({
+      url: 'help/help',
+    })
+  },
+  
 
   turn_change_phonenumber: function(){
 
