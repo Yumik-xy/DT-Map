@@ -13,10 +13,10 @@ page {
   line-height: 70rpx;
 }
 
-.con view {
+/* .con view {
   padding-left: 30rpx;
   border-bottom: 1px solid #f2f2f2;
-}
+} */
 
 .con view text {
   font-size: 32rpx;
@@ -26,6 +26,8 @@ page {
 .con-nr {
   background-color: white;
   display: flex;
+  padding-left: 30rpx;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .con-nr text {
@@ -71,6 +73,8 @@ page {
 .con-code {
   background-color: white;
   display: flex;
+  padding-left: 30rpx;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .con-code text {
