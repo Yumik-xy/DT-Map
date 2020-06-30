@@ -1,2 +1,25 @@
 <!--pages/user/setup/feedback/feedback.wxml-->
-<text>pages/user/setup/feedback/feedback.wxml</text>
+<view class="feedback">
+  <view class="iput">
+    <textarea placeholder="反馈nm"></textarea>
+  </view>
+  <view class="upLoad">
+    <text class='pf-type'>添加图片</text>
+    <view class="question-images clearFloat">
+      <block wx:for="{{images}}" wx:key="*this">
+        <view class="q-image-wrap"> 
+<!-- 图片缩略图  -->
+         <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+<!-- 移除图片的按钮  -->
+         <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
+           <image src="../../../../images/cross.png"></image>
+          </view>
+        </view>
+      </block>
+      <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
+        <image src="../../../../images/jiahao1.png"></image>
+      </view>
+    </view>
+  </view>
+   <button style="width:100%" class="submit" bindtap="submit"> 提交反馈 </button>
+</view>
