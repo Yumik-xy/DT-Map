@@ -97,9 +97,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/user/register/register",
-					"pathName": "pages/user/register/register",
+					"id": 4,
+					"name": "pages/user/setup/privacy/privacy",
+					"pathName": "pages/user/setup/privacy/privacy",
 					"query": "",
 					"scene": null
 				}
