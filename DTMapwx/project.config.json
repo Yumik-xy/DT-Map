@@ -91,15 +91,8 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/user/setup/setup",
-					"pathName": "pages/user/setup/setup",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "pages/user/setup/privacy/privacy",
-					"pathName": "pages/user/setup/privacy/privacy",
+					"name": "pages/user/setup/help/help",
+					"pathName": "pages/user/setup/help/help",
 					"query": "",
 					"scene": null
 				}
