@@ -20,13 +20,33 @@ Page({
   },
 
   getnotify: function () {
-    var notify = util.getnotify().data;
-    console.log(notify);
-    this.setData({
-      notify: notify,
-      msgNum: notify.length,
+    var that = this
+    var id = -1
+    wx.request({
+      url: 'http://127.0.0.1:8000/api/notify?id=' + String(id),
+      data: {},
+      header: {
+        'Content-Type': 'application/json'
+      },
+      method: "GET",
+      success: function (res) {
+        console.log(res);
+        if (res.data.status) {
+          var notify = res.data.data
+          notify.forEach(function (item, index) {
+            notify[index].isread = 0
+          })
+
+          that.setData({
+            notify: notify,
+            msgNum: notify.length,
+          })
+          that.getReadmsg();
+        }
+      },
+      fail: function (res) {
+      }
     })
-    this.getReadmsg();
   },
   /**
    * 清除所有未读消息
@@ -52,16 +72,6 @@ Page({
     })
   },
 
-  // upper: function () {
-  //   console.log("upper");
-  //   this.refresh();
-  // },
-
-  // lower: function () {
-  //   console.log("lower");
-  //   this.loadmore();
-  // },
-
   refresh: function () {
     var that = this;
     wx.showNavigationBarLoading();
@@ -73,21 +83,48 @@ Page({
   },
 
   loadmore: function () {
-    wx.showNavigationBarLoading();
-    var nextnotify = util.getNextnotify().data;
-    console.log(nextnotify);
-    this.setData({
-      notify: this.data.notify.concat(nextnotify),
-      msgNum: this.data.notify.concat(nextnotify).length,
+
+    var that = this
+    var id = -1
+    if (that.data.notify.length > 0) {
+      id = that.data.notify[that.data.notify.length - 1].notify_id
+      console.log(id)
+    }
+    wx.request({
+      url: 'http://127.0.0.1:8000/api/notify?id=' + String(id),
+      data: {},
+      header: {
+        'Content-Type': 'application/json'
+      },
+      method: "GET",
+      success: function (res) {
+        console.log(res);
+        if (res.data.status) {
+          var notify = res.data.data
+          notify.forEach(function (item, index) {
+            notify[index].isread = 0
+          })
+
+          that.setData({
+            notify: that.data.notify.concat(notify),
+            msgNum: that.data.notify.concat(notify).length,
+          })
+          that.getReadmsg();
+        }
+        else{
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+          })
+        }
+      },
+      fail: function (res) {
+      }
     })
-    this.getReadmsg();
-    setTimeout(function () {
-      wx.hideNavigationBarLoading()
-    }, 500)
   },
 
   norifyHandler: function (event) {
-    var id = event.currentTarget.dataset.id ;
+    var id = event.currentTarget.dataset.id;
     console.log(id);
     var notifys = this.data.notify;
     var isread = 'notify[' + id + '].isread';

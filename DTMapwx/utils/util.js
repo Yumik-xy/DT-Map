@@ -17,38 +17,3 @@ const formatNumber = n => {
 module.exports = {
   formatTime: formatTime
 }
-
-var notify = require("../data/data_notify.js");
-var notify_next = require("../data/data_notify_next.js");
-
-function getData(url){
-  return new Promise(function(reslove, reject){
-    wx.request({
-      url: 'url',
-      data: {},
-      header: {
-      'Content-Type': 'application/json'
-      },
-      success: function(res){
-        console.log("success");
-        reslove(res);
-      },
-      fail: function(res){
-        console.log("fail");
-        reject(res);
-      }
-    })
-  })
-}
-
-function getnotify(){
-  return notify.notify
-}
-
-function getNextnotify(){
-  return notify_next.nextnotify
-}
-
-module.exports.getData = getData;
-module.exports.getnotify = getnotify;
-module.exports.getNextnotify = getNextnotify;

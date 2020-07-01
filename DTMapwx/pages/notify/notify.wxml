@@ -38,7 +38,7 @@
 						<text>{{tools.sub(item.notify_abstract)}}</text>
 					</view>
 					<view class="more">
-						<text> - {{item.time}} - 已有 {{item.read_num}} 人阅读了该通知 - 点击查看详情</text>
+						<text> - {{item.time}} - 已有 {{item.read_num}} 人阅读了该通知 -</text>
 						<image src="../../images/more.png"></image>
 					</view>
 				</view>

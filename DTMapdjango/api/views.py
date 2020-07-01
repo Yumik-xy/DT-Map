@@ -3,8 +3,10 @@ import os
 import time
 import json
 
+from django.http import JsonResponse
+
 from api.method import method
-from django.db.models import Max
+from django.db.models import Max, Min
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.core import serializers
@@ -126,8 +128,16 @@ class ImageView(APIView):
 
 class GetNotify(APIView):
     def get(self, request, *args, **kwargs):
-        print(request.query_params.get('id'))
-        json_data = {}
-        notifies = dt_notifies.objects.filter().values()
-        json_data["data"] = list(notifies)
-        return Response({'data': json_data})
+        min_id = dt_notifies.objects.all().aggregate(Min('notify_id')).get('notify_id__min')
+        Getid = int(request.query_params.get('id'))
+        if Getid == -1:
+            notifies = dt_notifies.objects.order_by('-notify_id').filter().values()[:10]
+            json_data = list(notifies)
+            return Response({'status': True, 'data': json_data})
+        elif Getid <= min_id:
+            return Response({'status': False, 'message': '没有更多消息了'})
+        else:
+            notifies = dt_notifies.objects.order_by('-notify_id').filter(notify_id__lt=Getid).values()[:10]
+            print(notifies)
+            json_data = list(notifies)
+            return Response({'status': True, 'data': json_data})
