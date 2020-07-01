@@ -129,15 +129,25 @@ class ImageView(APIView):
 class GetNotify(APIView):
     def get(self, request, *args, **kwargs):
         min_id = dt_notifies.objects.all().aggregate(Min('notify_id')).get('notify_id__min')
-        Getid = int(request.query_params.get('id'))
-        if Getid == -1:
-            notifies = dt_notifies.objects.order_by('-notify_id').filter().values()[:10]
-            json_data = list(notifies)
-            return Response({'status': True, 'data': json_data})
-        elif Getid <= min_id:
-            return Response({'status': False, 'message': '没有更多消息了'})
+        Getid = int(request.query_params.get('findid', '-200'))
+        readid = int(request.query_params.get('readid', '-200'))
+        if Getid != -200:
+            if Getid == -1:
+                notifies = dt_notifies.objects.order_by('-notify_id').filter().values()[:10]
+                json_data = list(notifies)
+                return Response({'status': True, 'data': json_data})
+            elif Getid <= min_id:
+                return Response({'status': False, 'message': '没有更多消息了'})
+            else:
+                notifies = dt_notifies.objects.order_by('-notify_id').filter(notify_id__lt=Getid).values()[:10]
+                print(notifies)
+                json_data = list(notifies)
+                return Response({'status': True, 'data': json_data})
+        elif readid != -200:
+            db = dt_notifies.objects.get(notify_id=readid)
+            db.read_num += 1
+            print(db.read_num)
+            db.save()
+            return Response({'status': True, 'data': db.read_num})
         else:
-            notifies = dt_notifies.objects.order_by('-notify_id').filter(notify_id__lt=Getid).values()[:10]
-            print(notifies)
-            json_data = list(notifies)
-            return Response({'status': True, 'data': json_data})
+            return Response({'status': False, 'message': '参数错误'})

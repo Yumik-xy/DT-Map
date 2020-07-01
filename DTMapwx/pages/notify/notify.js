@@ -10,6 +10,7 @@ Page({
     msgNum: 0,
     readmsg: 0,
     notify: [],
+    readnotify: [],
   },
 
   /**
@@ -17,13 +18,22 @@ Page({
    */
   onLoad: function (options) {
     this.getnotify();
+    var that = this;
+    wx.getStorage({
+      key: 'readnotify',
+      success: function (res) {
+        for (let i in res.data) {
+          that.data.readnotify.push(res.data[i])
+        };
+      }
+    })
   },
 
   getnotify: function () {
     var that = this
     var id = -1
     wx.request({
-      url: 'http://127.0.0.1:8000/api/notify?id=' + String(id),
+      url: 'http://127.0.0.1:8000/api/notify?findid=' + String(id),
       data: {},
       header: {
         'Content-Type': 'application/json'
@@ -43,47 +53,19 @@ Page({
           })
           that.getReadmsg();
         }
+        wx.hideNavigationBarLoading()
+        wx.stopPullDownRefresh()
       },
       fail: function (res) {
-      }
+        wx.showToast({
+          title: '获取失败，请检查网络！',
+          icon: 'none',
+        })
+      },
     })
-  },
-  /**
-   * 清除所有未读消息
-   **/
-  messageremove: function () {
-    if (this.data.readmsg == 0) return;
-    var that = this;
-    wx.showModal({
-      title: 'DTMap - 提示',
-      content: '是否要清除所有未读消息',
-      success(res) {
-        if (res.confirm) {
-          var notifys = that.data.notify;
-          for (var i = 0; i < notifys.length; i++) {
-            var isread = 'notify[' + i + '].isread';
-            that.setData({ [isread]: 1 });
-          }
-          that.getReadmsg();
-        } else if (res.cancel) {
-          console.log('error')
-        }
-      }
-    })
-  },
-
-  refresh: function () {
-    var that = this;
-    wx.showNavigationBarLoading();
-    this.getnotify();
-    setTimeout(function () {
-      wx.hideNavigationBarLoading()
-      wx.stopPullDownRefresh()
-    }, 500)
   },
 
   loadmore: function () {
-
     var that = this
     var id = -1
     if (that.data.notify.length > 0) {
@@ -91,7 +73,7 @@ Page({
       console.log(id)
     }
     wx.request({
-      url: 'http://127.0.0.1:8000/api/notify?id=' + String(id),
+      url: 'http://127.0.0.1:8000/api/notify?findid=' + String(id),
       data: {},
       header: {
         'Content-Type': 'application/json'
@@ -110,28 +92,89 @@ Page({
             msgNum: that.data.notify.concat(notify).length,
           })
           that.getReadmsg();
-        }
-        else{
+        } else {
           wx.showToast({
             title: res.data.message,
             icon: 'none',
           })
         }
       },
-      fail: function (res) {
+      fail: function (res) { }
+    })
+  },
+
+  messageremove: function () {
+    if (this.data.readmsg == 0) return;
+    var that = this;
+    var notify = this.data.notify;
+    wx.showModal({
+      title: 'DTMap - 提示',
+      content: '是否要清除所有未读消息',
+      success(res) {
+        if (res.confirm) {
+          for (var i = 0; i < notify.length; i++) {
+            if (that.data.readnotify.indexOf(notify[i].notify_id) == -1) {
+              var isread = 'notify[' + i + '].isread';
+              that.setData({
+                [isread]: 1
+              });
+              this.data.readnotify.push(notify[i].notify_id)
+              wx.setStorageSync('readnotify', this.data.readnotify);
+              wx.getStorage({
+                key: 'readnotify',
+                success: function (res) {
+                  console.log(res)
+                }
+              })
+            }
+          }
+          that.getReadmsg();
+
+        } else if (res.cancel) {
+          console.log('error')
+        }
       }
     })
   },
 
   norifyHandler: function (event) {
+    var that = this
     var id = event.currentTarget.dataset.id;
     console.log(id);
-    var notifys = this.data.notify;
-    var isread = 'notify[' + id + '].isread';
-    this.setData({ [isread]: 1 });
-    this.getReadmsg();
+    var notify = that.data.notify;
+    if (that.data.readnotify.indexOf(notify[id].notify_id) == -1) {
+      var isread = 'notify[' + id + '].isread';
+      that.setData({
+        [isread]: 1
+      });
+      this.data.readnotify.push(notify[id].notify_id)
+      wx.setStorageSync('readnotify', this.data.readnotify);
+      wx.getStorage({
+        key: 'readnotify',
+        success: function (res) {
+          console.log(res)
+        }
+      })
+      wx.request({
+        url: 'http://127.0.0.1:8000/api/notify?readid=' + String(notify[id].notify_id),
+        data: {},
+        header: {
+          'Content-Type': 'application/json'
+        },
+        method: "GET",
+        success: function (res) {
+          if (res.data.status) {
+            var isread = 'notify[' + id + '].read_num';
+            that.setData({
+              [isread]: res.data.data
+            });
+          }
+        }
+      })
+    }
+    that.getReadmsg();
     wx.navigateTo({
-      url: './notify-details/notify-details?notify=' + JSON.stringify(notifys[id]),
+      url: './notify-details/notify-details?notify=' + JSON.stringify(notify[id]),
     })
   },
 
@@ -152,17 +195,24 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  },
+  onHide: function () { },
 
   getReadmsg: function () {
-    console.log("getReadmsg");
     var readmsg = 0;
+    var that = this
     var notify = this.data.notify;
     for (var i = 0; i < notify.length; i++)
-      if (notify[i].isread == 0)
+      if (that.data.readnotify.indexOf(notify[i].notify_id) == -1)
         readmsg += 1;
-    this.setData({ readmsg: readmsg })
+      else {
+        var isread = 'notify[' + i + '].isread';
+        that.setData({
+          [isread]: 1
+        });
+      }
+    this.setData({
+      readmsg: readmsg
+    })
     var that = this;
     if (that.data.readmsg > 0)
       wx.setTabBarBadge({
@@ -186,7 +236,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.refresh();
+    this.getnotify();
   },
 
   /**
