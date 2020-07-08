@@ -174,7 +174,7 @@ Page({
     }
     that.getReadmsg();
     wx.navigateTo({
-      url: './notify-details/notify-details?notify=' + JSON.stringify(notify[id]),
+      url: './notifydetails/notifydetails?notify=' + JSON.stringify(notify[id]),
     })
   },
 

@@ -5,7 +5,7 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/user/user",
-    "pages/notify/notify-details/notify-details",
+    "pages/notify/notifydetails/notifydetails",
     "pages/user/manage/manage",
     "pages/user/register/register",
     "pages/user/region-picker/region-picker",
