@@ -156,8 +156,10 @@ Page({
         }
       })
       wx.request({
-        url: 'http://127.0.0.1:8000/api/notify?readid=' + String(notify[id].notify_id),
-        data: {},
+        url: 'http://127.0.0.1:8000/api/notify/',
+        data: {
+          readid:String(notify[id].notify_id)
+        },
         header: {
           'Content-Type': 'application/json'
         },

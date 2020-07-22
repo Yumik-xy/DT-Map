@@ -1,5 +1,4 @@
 // pages/notify-details/notify-details.js
-var util = require("../../../utils/util.js");
 var notify = require("../notify.js");
 
 Page({
